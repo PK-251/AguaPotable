@@ -1,0 +1,141 @@
+/*
+ * Sidebar — shell administrativo.
+ * Fija en desktop (>= 992px), offcanvas en móvil.
+ */
+
+.agua-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--agua-bg);
+}
+
+.agua-shell__body {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.agua-sidebar {
+    width: var(--agua-sidebar-width);
+    flex: 0 0 var(--agua-sidebar-width);
+    background-color: var(--agua-surface);
+    border-right: 1px solid var(--agua-border);
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.agua-sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.5rem 1.25rem;
+    border-bottom: 1px solid var(--agua-border);
+    margin-bottom: 0.75rem;
+}
+
+.agua-sidebar__brand-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--agua-radius-md);
+    background-color: var(--agua-primary-soft);
+    color: var(--agua-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.agua-sidebar__brand-text {
+    line-height: 1.15;
+}
+
+.agua-sidebar__brand-name {
+    color: var(--agua-primary);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.agua-sidebar__brand-role {
+    color: var(--agua-text-subtle);
+    font-size: 0.75rem;
+}
+
+.agua-sidebar__nav {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+}
+
+.agua-sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--agua-radius-md);
+    color: var(--agua-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+    text-decoration: none;
+}
+
+.agua-sidebar__link:hover {
+    background-color: var(--agua-surface-alt);
+    color: var(--agua-text);
+    text-decoration: none;
+}
+
+.agua-sidebar__link.is-active {
+    background-color: var(--agua-primary-softer);
+    color: var(--agua-primary);
+    font-weight: 600;
+}
+
+.agua-sidebar__link.is-active .material-symbols-outlined {
+    color: var(--agua-primary);
+}
+
+.agua-sidebar__footer {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--agua-border);
+    margin-top: 0.75rem;
+}
+
+/* Offcanvas en móvil */
+@media (max-width: 991.98px) {
+    .agua-sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        transform: translateX(-100%);
+        transition: transform 0.2s ease;
+        z-index: 1045;
+        box-shadow: var(--agua-shadow-lg);
+    }
+
+    .agua-sidebar.is-open {
+        transform: translateX(0);
+    }
+
+    .agua-sidebar__backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(17, 20, 24, 0.4);
+        z-index: 1044;
+        display: none;
+    }
+
+    .agua-sidebar__backdrop.is-open {
+        display: block;
+    }
+}

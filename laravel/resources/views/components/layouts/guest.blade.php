@@ -1,18 +1,30 @@
+{{--
+    Layout para pantallas sin sesión (login, errores públicos).
+    Fondo lavanda, card centrado.
+--}}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Acceso — J.A.S.S. Quilcata')</title>
+    <title>@yield('title', 'Acceso') — J.A.S.S. QUILCATA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap"
+        rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('head')
 </head>
-<body class="bg-light">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                @yield('content')
-            </div>
-        </div>
+<body>
+    <div class="agua-auth-wrap">
+        @yield('content')
     </div>
+    @stack('scripts')
 </body>
 </html>

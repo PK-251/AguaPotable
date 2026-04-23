@@ -1,0 +1,108 @@
+/*
+ * Capa base — overrides globales tras Bootstrap.
+ */
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    background-color: var(--agua-bg);
+    color: var(--agua-text);
+    font-family: var(--agua-font-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Tipografía de títulos más contundente, alineada a mockups */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+    color: var(--agua-text);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* Botones con radios y peso de mockup */
+.btn {
+    --bs-btn-border-radius: var(--agua-radius-md);
+    font-weight: 500;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--agua-primary);
+    --bs-btn-border-color: var(--agua-primary);
+    --bs-btn-hover-bg: var(--agua-primary-hover);
+    --bs-btn-hover-border-color: var(--agua-primary-hover);
+    --bs-btn-active-bg: var(--agua-primary-hover);
+    --bs-btn-active-border-color: var(--agua-primary-hover);
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: var(--agua-text);
+    --bs-btn-border-color: var(--agua-border-strong);
+    --bs-btn-hover-bg: var(--agua-surface-alt);
+    --bs-btn-hover-color: var(--agua-text);
+    --bs-btn-hover-border-color: var(--agua-border-strong);
+}
+
+/* Cards por defecto con borde sutil y radio medio */
+.card {
+    --bs-card-border-color: var(--agua-border);
+    --bs-card-border-radius: var(--agua-radius-lg);
+    --bs-card-inner-border-radius: var(--agua-radius-lg);
+    background-color: var(--agua-surface);
+    box-shadow: var(--agua-shadow-sm);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Accesibilidad: anillo de foco consistente */
+:where(a, button, .btn, .form-control, .form-select):focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 3px var(--bs-focus-ring-color);
+    border-radius: var(--agua-radius-md);
+}
+
+/* Material Symbols — tamaño base y alineación */
+.material-symbols-outlined {
+    font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    font-size: 1.25rem;
+    line-height: 1;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.material-symbols-outlined.is-filled {
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 500,
+        "GRAD" 0,
+        "opsz" 24;
+}
+
+.material-symbols-outlined.is-sm {
+    font-size: 1rem;
+}
+
+.material-symbols-outlined.is-lg {
+    font-size: 1.75rem;
+}

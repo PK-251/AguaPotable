@@ -1,0 +1,63 @@
+/*
+ * Chips / status badges con punto de color.
+ * Usados en padrón (Activo / Cortado / Inactivo), cobros (Pagado / Atraso), etc.
+ */
+
+.agua-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.625rem;
+    border-radius: var(--agua-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    background-color: var(--agua-neutral-soft);
+    color: var(--agua-text-muted);
+    white-space: nowrap;
+}
+
+.agua-chip::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    opacity: 0.9;
+}
+
+.agua-chip--no-dot::before {
+    display: none;
+}
+
+.agua-chip--success {
+    background-color: var(--agua-success-soft);
+    color: var(--agua-success);
+}
+
+.agua-chip--warning {
+    background-color: var(--agua-warning-soft);
+    color: var(--agua-warning);
+}
+
+.agua-chip--danger {
+    background-color: var(--agua-danger-soft);
+    color: var(--agua-danger);
+}
+
+.agua-chip--info {
+    background-color: var(--agua-info-soft);
+    color: var(--agua-info);
+}
+
+.agua-chip--muted {
+    background-color: var(--agua-neutral-soft);
+    color: var(--agua-text-subtle);
+}
+
+.agua-chip--caps {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.7rem;
+}

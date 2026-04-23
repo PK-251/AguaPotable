@@ -1,0 +1,75 @@
+/*
+ * Tokens de diseño — J.A.S.S. QUILCATA
+ * Fuente: docs/mockups/ (screens oficiales, modo claro).
+ * Se exponen como custom properties para que Bootstrap 5.3
+ * y los componentes propios los consuman sin duplicar valores.
+ */
+
+:root {
+    /* Paleta institucional */
+    --agua-primary: #0057cd;
+    --agua-primary-hover: #00419e;
+    --agua-primary-soft: #dae2ff;
+    --agua-primary-softer: #eef1ff;
+    --agua-accent: #0d6efd;
+
+    /* Superficies */
+    --agua-bg: #f2f3ff;
+    --agua-surface: #ffffff;
+    --agua-surface-alt: #ecedf9;
+    --agua-surface-muted: #f7f8fc;
+
+    /* Texto */
+    --agua-text: #191b24;
+    --agua-text-muted: #424655;
+    --agua-text-subtle: #727787;
+    --agua-text-on-primary: #ffffff;
+
+    /* Bordes */
+    --agua-border: #e1e2ee;
+    --agua-border-strong: #c2c6d8;
+
+    /* Semántica */
+    --agua-success: #1e8449;
+    --agua-success-soft: #d9f2e4;
+    --agua-warning: #b75c00;
+    --agua-warning-soft: #ffe5cc;
+    --agua-danger: #ba1a1a;
+    --agua-danger-soft: #ffdad6;
+    --agua-info: #0057cd;
+    --agua-info-soft: #dae2ff;
+    --agua-neutral-soft: #e1e2ee;
+
+    /* Radios */
+    --agua-radius-sm: 0.25rem;
+    --agua-radius-md: 0.5rem;
+    --agua-radius-lg: 0.75rem;
+    --agua-radius-pill: 9999px;
+
+    /* Sombra / elevación */
+    --agua-shadow-sm: 0 1px 2px rgba(17, 20, 24, 0.04);
+    --agua-shadow-md: 0 4px 12px rgba(17, 20, 24, 0.06);
+    --agua-shadow-lg: 0 12px 28px rgba(17, 20, 24, 0.08);
+
+    /* Layout */
+    --agua-sidebar-width: 280px;
+    --agua-topbar-height: 64px;
+    --agua-content-max: 1320px;
+    --agua-gutter: 1.5rem;
+
+    /* Tipografía */
+    --agua-font-base: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --agua-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+    /* Overrides de Bootstrap 5.3 — se aplican cuando Bootstrap lee estas variables */
+    --bs-primary: #0057cd;
+    --bs-primary-rgb: 0, 87, 205;
+    --bs-body-font-family: var(--agua-font-base);
+    --bs-body-color: var(--agua-text);
+    --bs-body-bg: var(--agua-bg);
+    --bs-border-color: var(--agua-border);
+    --bs-border-radius: var(--agua-radius-md);
+    --bs-link-color: var(--agua-primary);
+    --bs-link-hover-color: var(--agua-primary-hover);
+    --bs-focus-ring-color: rgba(0, 87, 205, 0.25);
+}

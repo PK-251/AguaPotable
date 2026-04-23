@@ -1,0 +1,105 @@
+/*
+ * Data tables — override de .table de Bootstrap para el estilo J.A.S.S.
+ */
+
+.agua-table-card {
+    background-color: var(--agua-surface);
+    border: 1px solid var(--agua-border);
+    border-radius: var(--agua-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--agua-shadow-sm);
+}
+
+.agua-table-card__toolbar {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--agua-border);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.agua-table-card__footer {
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--agua-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    color: var(--agua-text-muted);
+}
+
+.agua-table {
+    --bs-table-bg: transparent;
+    width: 100%;
+    margin-bottom: 0;
+    color: var(--agua-text);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.agua-table thead th {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--agua-text-muted);
+    background-color: var(--agua-surface-alt);
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--agua-border);
+    white-space: nowrap;
+}
+
+.agua-table tbody td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--agua-border);
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+.agua-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.agua-table tbody tr:hover td {
+    background-color: var(--agua-surface-muted);
+}
+
+.agua-table .text-end,
+.agua-table td.text-end,
+.agua-table th.text-end {
+    text-align: right;
+}
+
+.agua-table .agua-actions {
+    display: inline-flex;
+    gap: 0.25rem;
+}
+
+.agua-table .agua-actions .agua-icon-btn {
+    width: 32px;
+    height: 32px;
+    color: var(--agua-text-subtle);
+}
+
+.agua-table .agua-actions .agua-icon-btn:hover {
+    color: var(--agua-primary);
+}
+
+.agua-table .agua-actions .agua-icon-btn--danger:hover {
+    color: var(--agua-danger);
+}
+
+/* Paginación alineada con Bootstrap */
+.pagination .page-link {
+    color: var(--agua-text-muted);
+    border-color: var(--agua-border);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--agua-primary);
+    border-color: var(--agua-primary);
+    color: var(--agua-text-on-primary);
+}

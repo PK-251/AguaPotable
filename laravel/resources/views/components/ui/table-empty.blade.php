@@ -1,4 +1,6 @@
+{{--
+    Placeholder legacy — redirige al nuevo empty-state para mantener compat con vistas
+    que ya lo usan. Preferir <x-ui.empty-state /> en implementaciones nuevas.
+--}}
 @props(['message' => 'No hay datos para mostrar.'])
-<div class="text-center text-body-secondary border rounded py-5 px-3">
-    <p class="mb-0">{{ $message }}</p>
-</div>
+<x-ui.empty-state icon="inbox" title="Sin datos" :message="$message" />

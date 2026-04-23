@@ -1,0 +1,92 @@
+/*
+ * Forms — floating labels con estilo J.A.S.S., search inputs y utilidades.
+ */
+
+.form-floating > .form-control,
+.form-floating > .form-select {
+    border-radius: var(--agua-radius-md);
+    border-color: var(--agua-border-strong);
+}
+
+.form-floating > .form-control:focus,
+.form-floating > .form-select:focus {
+    border-color: var(--agua-primary);
+    box-shadow: 0 0 0 3px var(--bs-focus-ring-color);
+}
+
+.form-floating > label {
+    color: var(--agua-text-subtle);
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--agua-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+}
+
+.form-control,
+.form-select {
+    border-color: var(--agua-border-strong);
+    border-radius: var(--agua-radius-md);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--agua-primary);
+    box-shadow: 0 0 0 3px var(--bs-focus-ring-color);
+}
+
+/* Input con icono (buscar, etc.) */
+.agua-search {
+    position: relative;
+}
+
+.agua-search__icon {
+    position: absolute;
+    top: 50%;
+    left: 0.9rem;
+    transform: translateY(-50%);
+    color: var(--agua-text-subtle);
+    pointer-events: none;
+}
+
+.agua-search input {
+    padding-left: 2.4rem;
+}
+
+/* Filter bar */
+.agua-filter-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1.25rem;
+    background-color: var(--agua-surface);
+    border: 1px solid var(--agua-border);
+    border-radius: var(--agua-radius-lg) var(--agua-radius-lg) 0 0;
+    border-bottom: 0;
+}
+
+.agua-filter-bar + .table-responsive,
+.agua-filter-bar + .agua-table,
+.agua-filter-bar + .agua-table-card {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* Toggle de contraseña */
+.agua-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+    color: var(--agua-text-subtle);
+    padding: 0.25rem;
+    border-radius: var(--agua-radius-sm);
+}
+
+.agua-password-toggle:hover {
+    color: var(--agua-text);
+}

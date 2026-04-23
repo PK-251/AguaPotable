@@ -1,0 +1,207 @@
+/*
+ * Topbar — barra superior para admin y portal.
+ */
+
+.agua-topbar {
+    background-color: var(--agua-surface);
+    border-bottom: 1px solid var(--agua-border);
+    min-height: var(--agua-topbar-height);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.agua-topbar__toggle {
+    background: none;
+    border: 0;
+    color: var(--agua-text-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--agua-radius-md);
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .agua-topbar__toggle {
+        display: inline-flex;
+    }
+}
+
+.agua-topbar__brand {
+    color: var(--agua-primary);
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.agua-topbar__brand:hover {
+    text-decoration: none;
+}
+
+.agua-topbar__breadcrumb {
+    color: var(--agua-text-subtle);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.agua-topbar__breadcrumb a {
+    color: var(--agua-text-subtle);
+}
+
+.agua-topbar__breadcrumb .is-current {
+    color: var(--agua-primary);
+    font-weight: 600;
+}
+
+.agua-topbar__sep {
+    color: var(--agua-border-strong);
+}
+
+.agua-topbar__search {
+    flex: 1 1 auto;
+    max-width: 460px;
+    position: relative;
+}
+
+.agua-topbar__search input {
+    width: 100%;
+    border-radius: var(--agua-radius-md);
+    border: 1px solid var(--agua-border);
+    background-color: var(--agua-surface-muted);
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    font-size: 0.9rem;
+}
+
+.agua-topbar__search input::placeholder {
+    color: var(--agua-text-subtle);
+}
+
+.agua-topbar__search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--agua-text-subtle);
+    pointer-events: none;
+}
+
+.agua-topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.agua-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--agua-radius-md);
+    border: 0;
+    background-color: transparent;
+    color: var(--agua-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.15s ease;
+}
+
+.agua-icon-btn:hover {
+    background-color: var(--agua-surface-alt);
+}
+
+.agua-icon-btn .agua-icon-btn__dot {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--agua-danger);
+    border: 2px solid var(--agua-surface);
+}
+
+/* Portal topbar horizontal */
+.agua-portal-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+}
+
+.agua-portal-nav__link {
+    padding: 0.5rem 0.9rem;
+    color: var(--agua-text-muted);
+    font-weight: 500;
+    border-radius: var(--agua-radius-md);
+    text-decoration: none;
+    position: relative;
+}
+
+.agua-portal-nav__link:hover {
+    color: var(--agua-text);
+    background-color: var(--agua-surface-alt);
+    text-decoration: none;
+}
+
+.agua-portal-nav__link.is-active {
+    color: var(--agua-primary);
+    font-weight: 600;
+}
+
+.agua-portal-nav__link.is-active::after {
+    content: "";
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: -2px;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background-color: var(--agua-primary);
+}
+
+/* Contenedor general de contenido admin */
+.agua-main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background-color: var(--agua-bg);
+}
+
+.agua-main__inner {
+    flex: 1 1 auto;
+    padding: 1.75rem 2rem;
+    max-width: var(--agua-content-max);
+    width: 100%;
+}
+
+@media (max-width: 575.98px) {
+    .agua-main__inner {
+        padding: 1.25rem 1rem;
+    }
+}
+
+.agua-footer {
+    border-top: 1px solid var(--agua-border);
+    background-color: var(--agua-surface);
+    padding: 1rem 2rem;
+    font-size: 0.85rem;
+    color: var(--agua-text-subtle);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.agua-footer a {
+    color: var(--agua-text-subtle);
+    margin-left: 1rem;
+}

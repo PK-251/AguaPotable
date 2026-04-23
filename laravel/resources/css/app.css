@@ -1,10 +1,25 @@
 /**
- * Agua Potable — J.A.S.S. Quilcata
- * Estilos base con Bootstrap 5.3 (Vite + npm). Sin Tailwind como solución principal.
+ * Agua Potable — J.A.S.S. QUILCATA
+ *
+ * Entry CSS. Orden importante:
+ *   1. tokens       → variables de diseño y overrides de Bootstrap
+ *   2. bootstrap    → framework base
+ *   3. base         → overrides globales sobre Bootstrap (body, botones, cards…)
+ *   4. componentes  → capas por componente (sidebar, topbar, stat-card, table, etc.)
+ *
+ * No se usa Tailwind como solución principal. Los mockups en docs/mockups/
+ * se reinterpretaron a Bootstrap 5.3 + componentes Blade propios.
  */
-@import "bootstrap/dist/css/bootstrap.min.css";
 
-/* Tokens de marca y utilidades: completar con diseño final */
-body {
-    min-height: 100vh;
-}
+@import "./tokens.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./base.css";
+@import "./sidebar.css";
+@import "./topbar.css";
+@import "./page-header.css";
+@import "./stat-card.css";
+@import "./data-table.css";
+@import "./chips.css";
+@import "./forms.css";
+@import "./auth.css";
+@import "./portal.css";

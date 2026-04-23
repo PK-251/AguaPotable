@@ -1,0 +1,214 @@
+/*
+ * Estilos pensados para DomPDF (subconjunto CSS soportado).
+ * Evitar flex/grid avanzados; se usa tabla/float simple.
+ */
+
+@page {
+    margin: 1.5cm 1.5cm;
+}
+
+body.agua-pdf {
+    font-family: "DejaVu Sans", sans-serif;
+    font-size: 11pt;
+    color: #191b24;
+    background-color: #ffffff;
+    margin: 0;
+}
+
+.agua-pdf h1,
+.agua-pdf h2,
+.agua-pdf h3 {
+    margin: 0 0 6pt;
+    color: #191b24;
+}
+
+.agua-pdf .muted {
+    color: #727787;
+}
+
+.agua-pdf .text-right {
+    text-align: right;
+}
+
+.agua-pdf .text-center {
+    text-align: center;
+}
+
+.agua-pdf .brand-row {
+    width: 100%;
+    border-bottom: 2px solid #0057cd;
+    padding-bottom: 10pt;
+    margin-bottom: 14pt;
+}
+
+.agua-pdf .brand-row .brand-mark {
+    background-color: #0057cd;
+    color: #ffffff;
+    width: 40pt;
+    height: 40pt;
+    text-align: center;
+    line-height: 40pt;
+    border-radius: 6pt;
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.agua-pdf .brand-name {
+    font-weight: bold;
+    font-size: 14pt;
+    color: #0057cd;
+}
+
+.agua-pdf .doc-title {
+    font-size: 10pt;
+    letter-spacing: 0.04em;
+    color: #727787;
+    text-transform: uppercase;
+}
+
+.agua-pdf .doc-number {
+    font-size: 14pt;
+    font-weight: bold;
+    color: #0057cd;
+    border: 1px solid #c2c6d8;
+    padding: 4pt 10pt;
+    border-radius: 4pt;
+    display: inline-block;
+}
+
+.agua-pdf .meta-box {
+    border: 1px solid #c2c6d8;
+    background-color: #f7f8fc;
+    padding: 10pt;
+    border-radius: 4pt;
+    margin-bottom: 14pt;
+}
+
+.agua-pdf .meta-box table td {
+    padding: 4pt 8pt;
+    font-size: 10pt;
+}
+
+.agua-pdf .meta-box .label {
+    color: #727787;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+}
+
+.agua-pdf table.items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14pt;
+}
+
+.agua-pdf table.items th {
+    background-color: #ecedf9;
+    color: #424655;
+    font-size: 9pt;
+    text-align: left;
+    padding: 8pt 10pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid #c2c6d8;
+}
+
+.agua-pdf table.items td {
+    padding: 8pt 10pt;
+    border-bottom: 1px solid #e1e2ee;
+    font-size: 10pt;
+}
+
+.agua-pdf table.items tr:nth-child(even) td {
+    background-color: #f7f8fc;
+}
+
+.agua-pdf .total-box {
+    background-color: #dae2ff;
+    color: #0057cd;
+    padding: 10pt 14pt;
+    border-radius: 4pt;
+    font-weight: bold;
+    font-size: 12pt;
+    text-align: right;
+    width: 45%;
+    float: right;
+}
+
+.agua-pdf .signature {
+    width: 45%;
+    border-top: 1px solid #191b24;
+    padding-top: 6pt;
+    font-size: 10pt;
+    text-align: center;
+}
+
+.agua-pdf .qr-block {
+    width: 45%;
+    font-size: 9pt;
+    color: #424655;
+}
+
+.agua-pdf .footer-note {
+    text-align: center;
+    font-size: 8pt;
+    color: #727787;
+    border-top: 1px solid #e1e2ee;
+    padding-top: 6pt;
+    margin-top: 18pt;
+}
+
+/* Reporte mensual */
+.agua-pdf .dual-col {
+    width: 100%;
+}
+
+.agua-pdf .dual-col td {
+    width: 50%;
+    vertical-align: top;
+    padding: 0 6pt;
+}
+
+.agua-pdf .summary-title {
+    color: #0057cd;
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 6pt;
+}
+
+.agua-pdf .summary-title.is-danger {
+    color: #ba1a1a;
+}
+
+.agua-pdf .balance-box {
+    background-color: #eef1ff;
+    border: 1px solid #c2c6d8;
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 14pt 0;
+}
+
+.agua-pdf .metric-grid {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8pt 0;
+    margin: 10pt 0;
+}
+
+.agua-pdf .metric-grid td {
+    border: 1px solid #c2c6d8;
+    border-radius: 4pt;
+    padding: 10pt;
+    text-align: center;
+    font-size: 10pt;
+}
+
+.agua-pdf .metric-grid .metric-value {
+    font-weight: bold;
+    font-size: 18pt;
+    color: #0057cd;
+    display: block;
+    margin-bottom: 4pt;
+}

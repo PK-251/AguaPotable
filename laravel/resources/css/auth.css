@@ -1,0 +1,70 @@
+/*
+ * Auth — pantalla de login.
+ */
+
+.agua-auth-wrap {
+    min-height: 100vh;
+    background-color: var(--agua-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.agua-auth-card {
+    width: 100%;
+    max-width: 28rem;
+    background-color: var(--agua-surface);
+    border: 1px solid var(--agua-border);
+    border-radius: var(--agua-radius-lg);
+    padding: 2.25rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--agua-shadow-md);
+}
+
+.agua-auth-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--agua-primary);
+}
+
+.agua-auth__brand {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.agua-auth__brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--agua-radius-md);
+    background-color: var(--agua-primary-soft);
+    color: var(--agua-primary);
+    margin-bottom: 1rem;
+}
+
+.agua-auth__title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.agua-auth__subtitle {
+    color: var(--agua-text-muted);
+    margin: 0;
+}
+
+.agua-auth__footer {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--agua-border);
+    text-align: center;
+    font-size: 0.875rem;
+}

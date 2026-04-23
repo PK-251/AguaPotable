@@ -3,7 +3,29 @@
 @section('title', 'Comprobantes')
 
 @section('content')
-    <h1 class="h3 mb-3">Comprobantes</h1>
-    <p class="text-body-secondary">Pendiente: listado y enlace a PDF o vista previa segura.</p>
-    <x-ui.table-empty />
+    <x-ui.page-header
+        title="Mis comprobantes"
+        subtitle="Descarga los comprobantes emitidos a tu nombre." />
+
+    <x-ui.data-table>
+        <thead>
+            <tr>
+                <th>N° comprobante</th>
+                <th>Fecha de emisión</th>
+                <th>Mes correspondiente</th>
+                <th class="text-end">Monto</th>
+                <th class="text-end" style="width:130px;">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5">
+                    <x-ui.empty-state
+                        icon="description"
+                        title="Sin comprobantes disponibles"
+                        message="Aún no se han emitido comprobantes a tu nombre." />
+                </td>
+            </tr>
+        </tbody>
+    </x-ui.data-table>
 @endsection

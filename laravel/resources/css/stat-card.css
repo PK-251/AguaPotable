@@ -1,0 +1,88 @@
+/*
+ * Stat cards — tarjetas KPI del dashboard/reportes/egresos.
+ */
+
+.agua-stat {
+    background-color: var(--agua-surface);
+    border: 1px solid var(--agua-border);
+    border-radius: var(--agua-radius-lg);
+    padding: 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 130px;
+    box-shadow: var(--agua-shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.agua-stat__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--agua-text-subtle);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.agua-stat__value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--agua-text);
+    margin: 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.agua-stat__value-prefix {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--agua-text-muted);
+}
+
+.agua-stat__value-icon {
+    margin-left: auto;
+    color: var(--agua-text-subtle);
+}
+
+.agua-stat__trend {
+    font-size: 0.8rem;
+    color: var(--agua-text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: auto;
+}
+
+/* Variantes por tono semántico */
+.agua-stat--success .agua-stat__value {
+    color: var(--agua-success);
+}
+
+.agua-stat--warning .agua-stat__value {
+    color: var(--agua-warning);
+}
+
+.agua-stat--danger .agua-stat__value {
+    color: var(--agua-danger);
+}
+
+.agua-stat--primary .agua-stat__value {
+    color: var(--agua-primary);
+}
+
+/* Variante de relleno pleno (ej. "Saldo caja" en reporte mensual) */
+.agua-stat--filled {
+    background-color: var(--agua-primary);
+    color: var(--agua-text-on-primary);
+    border-color: var(--agua-primary);
+}
+
+.agua-stat--filled .agua-stat__label,
+.agua-stat--filled .agua-stat__value,
+.agua-stat--filled .agua-stat__trend {
+    color: var(--agua-text-on-primary);
+}
