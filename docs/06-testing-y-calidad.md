@@ -75,22 +75,24 @@ Garantizar que el software que gestiona **dinero, padrón y comprobantes** en J.
 
 ## Qué pruebas mínimas por módulo crítico (checklist)
 
-| Módulo / dominio | Unit | Feature | Integración | E2E (posterior) | Performance (opc.) |
-|------------------|------|---------|------------|-----------------|--------------------|
-| Autenticación y roles (RF-01) | opc. helpers | **sí** | Si hay persistencia de tokens/roles | login flujo | — |
-| Padrón y búsqueda (RF-02/03) | reglas/unicidad | **sí** (CRUD + filtro) | si FK complejas | búsqueda caja | búsqueda con volumen |
-| Cálculo y pago (RF-04/05/06) | **sí** (cálculo) | **sí** (registro) | **sí** (transacción) | flujo cajero | picos de concurrencia |
-| Comprobante PDF + QR (RF-07/08) | plantilla/serie (opc.) | **sí** (descarga) | **sí** (Storage) | entrega | generación masiva |
-| Multas y tarifas (RF-11) | reglas monto (opc.) | **sí** | impacto en cobro | — | — |
-| Egresos (RF-12) | — | **sí** | con reporte (opc.) | — | — |
-| Reporte mensual (RF-09/10) | totales, periodo | **sí** (flujo) | **sí** (doble cierre) | aprobación | cierre bajo carga |
-| API / portal | — | **sí** API + web | autenticación y aislamiento | vecino | — |
-| Auditoría | — | visibilidad admin | trazas en `ActivityLog` (opc.) | — | — |
+
+| Módulo / dominio                | Unit                   | Feature                | Integración                         | E2E (posterior) | Performance (opc.)    |
+| ------------------------------- | ---------------------- | ---------------------- | ----------------------------------- | --------------- | --------------------- |
+| Autenticación y roles (RF-01)   | opc. helpers           | **sí**                 | Si hay persistencia de tokens/roles | login flujo     | —                     |
+| Padrón y búsqueda (RF-02/03)    | reglas/unicidad        | **sí** (CRUD + filtro) | si FK complejas                     | búsqueda caja   | búsqueda con volumen  |
+| Cálculo y pago (RF-04/05/06)    | **sí** (cálculo)       | **sí** (registro)      | **sí** (transacción)                | flujo cajero    | picos de concurrencia |
+| Comprobante PDF + QR (RF-07/08) | plantilla/serie (opc.) | **sí** (descarga)      | **sí** (Storage)                    | entrega         | generación masiva     |
+| Multas y tarifas (RF-11)        | reglas monto (opc.)    | **sí**                 | impacto en cobro                    | —               | —                     |
+| Egresos (RF-12)                 | —                      | **sí**                 | con reporte (opc.)                  | —               | —                     |
+| Reporte mensual (RF-09/10)      | totales, periodo       | **sí** (flujo)         | **sí** (doble cierre)               | aprobación      | cierre bajo carga     |
+| API / portal                    | —                      | **sí** API + web       | autenticación y aislamiento         | vecino          | —                     |
+| Auditoría                       | —                      | visibilidad admin      | trazas en `ActivityLog` (opc.)      | —               | —                     |
+
 
 ## Convenciones
 
 - Nombres de test en **español** o **inglés** pero **coherentes** y **descriptivos** (`test_pago_rollback_si_falla_multa`).
-- Reemplazar o eliminar **`ExampleTest`** de Laravel: no aporta al dominio.
+- Reemplazar o eliminar `**ExampleTest`** de Laravel: no aporta al dominio.
 - Usar **factories/seed** controlados; no depender de orden global de tests.
 - Evitar aserciones frágiles a textos de UI no esenciales; asertar estructura, códigos HTTP, y datos de BD/JSON.
 

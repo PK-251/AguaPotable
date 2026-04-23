@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>J.A.S.S. QUILCATA - Gestión de Tarifas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#7f2b00",
+                        "on-error-container": "#93000a",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#424655",
+                        "on-surface": "#191b24",
+                        "primary-fixed": "#dae2ff",
+                        "outline-variant": "#c2c6d8",
+                        "secondary": "#575f67",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5b646b",
+                        "tertiary-container": "#cf4b00",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#ecedf9",
+                        "on-primary-fixed-variant": "#00419e",
+                        "surface-tint": "#0057ce",
+                        "primary": "#0057cd",
+                        "on-primary-fixed": "#001946",
+                        "surface-container-high": "#e6e7f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e1e2ee",
+                        "secondary-container": "#d8e1ea",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#727787",
+                        "on-secondary-fixed": "#141d23",
+                        "on-secondary-fixed-variant": "#3f484f",
+                        "inverse-surface": "#2d3039",
+                        "secondary-fixed-dim": "#bfc8d0",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary-fixed": "#370e00",
+                        "on-primary-container": "#ffffff",
+                        "tertiary": "#a63b00",
+                        "primary-container": "#0d6efd",
+                        "surface-container-low": "#f2f3ff",
+                        "on-background": "#191b24",
+                        "on-tertiary-container": "#ffffff",
+                        "surface-container-highest": "#e1e2ee",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d8d9e5",
+                        "inverse-primary": "#b1c5ff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#dbe4ed",
+                        "background": "#faf8ff",
+                        "inverse-on-surface": "#eff0fc",
+                        "tertiary-fixed": "#ffdbce",
+                        "tertiary-fixed-dim": "#ffb599"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "280px",
+                        "margin-page": "2rem",
+                        "container-max": "1320px",
+                        "base-unit": "0.25rem",
+                        "gutter": "1.5rem"
+                    },
+                    "fontFamily": {},
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-base text-body-base antialiased min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col py-4 gap-1 bg-slate-50 dark:bg-slate-950 docked left-0 h-full w-64 border-r border-r border-gray-200 dark:border-gray-800 flat no shadows font-public-sans text-sm font-medium z-40">
+<!-- Header -->
+<div class="px-6 pb-6 border-b border-gray-200 dark:border-gray-800 mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-blue-700 dark:text-blue-400">Gestión JASS</h1>
+<p class="text-xs text-slate-500">Administrador</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto px-2 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Padrón</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Cobros</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">sell</span>
+<span>Tarifas</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span>Multas</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span>Egresos</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span>Reportes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span>Auditoría</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+<span>Usuarios</span>
+</a>
+</div>
+<!-- Footer -->
+<div class="mt-auto pt-4 px-2 border-t border-gray-200 dark:border-gray-800">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-md mx-2 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Cerrar Sesión</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 ml-64 bg-surface">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-6 h-16 w-full bg-white dark:bg-slate-900 text-blue-700 dark:text-blue-400 font-public-sans text-sm antialiased docked full-width top-0 border-b border-b border-gray-200 dark:border-gray-800 shadow-sm cursor-pointer active:opacity-80 transition-all">
+<div class="flex items-center gap-4 flex-1">
+<span class="text-xl font-bold text-blue-800 dark:text-blue-300">J.A.S.S. QUILCATA</span>
+<!-- Search Bar Placeholder -->
+<div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-2 ml-8 w-64 text-slate-500">
+<span class="material-symbols-outlined mr-2 text-sm">search</span>
+<span>Buscar...</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-300 overflow-hidden ml-2 border border-slate-200">
+<!-- Placeholder Profile Image -->
+<div class="w-full h-full bg-blue-100 flex items-center justify-center text-blue-700">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 overflow-y-auto p-margin-page p-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Gestión de Tarifas</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Administre los diferentes tipos de tarifas y sus montos aplicables.</p>
+</div>
+<button class="bg-primary text-on-primary hover:bg-surface-tint flex items-center gap-2 px-5 py-2.5 rounded-lg font-label-caps text-label-caps transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Nueva Tarifa
+                </button>
+</div>
+<!-- Data Table Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="px-6 py-4 border-b border-outline-variant font-semibold">Nombre</th>
+<th class="px-6 py-4 border-b border-outline-variant font-semibold">Descripción</th>
+<th class="px-6 py-4 border-b border-outline-variant font-semibold text-right">Monto (S/)</th>
+<th class="px-6 py-4 border-b border-outline-variant font-semibold text-center">Estado</th>
+<th class="px-6 py-4 border-b border-outline-variant font-semibold">Fecha de Vigencia</th>
+<th class="px-6 py-4 border-b border-outline-variant font-semibold text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 whitespace-nowrap font-medium">Doméstica</td>
+<td class="px-6 py-4 text-on-surface-variant max-w-xs truncate">Tarifa estándar para viviendas unifamiliares</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-medium">10.00</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-caps text-label-caps bg-primary-fixed text-on-primary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                        Activo
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">01 Ene, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error hover:bg-error-container rounded transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 whitespace-nowrap font-medium">Comercial</td>
+<td class="px-6 py-4 text-on-surface-variant max-w-xs truncate">Locales comerciales, tiendas y negocios</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-medium">25.00</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-caps text-label-caps bg-primary-fixed text-on-primary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                        Activo
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">01 Ene, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error hover:bg-error-container rounded transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 whitespace-nowrap font-medium">Social</td>
+<td class="px-6 py-4 text-on-surface-variant max-w-xs truncate">Casos especiales evaluados por la directiva</td>
+<td class="px-6 py-4 whitespace-nowrap text-right font-medium">5.00</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-caps text-label-caps bg-surface-variant text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                                        Inactivo
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant">01 Jun, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container rounded transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-error hover:bg-error-container rounded transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination / Footer -->
+<div class="bg-surface-container-lowest px-6 py-4 border-t border-outline-variant flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mostrando 1 a 3 de 3 registros</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container disabled:opacity-50" disabled="">Siguiente</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

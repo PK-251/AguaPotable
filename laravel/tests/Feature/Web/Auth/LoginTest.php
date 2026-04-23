@@ -2,14 +2,113 @@
 
 namespace Tests\Feature\Web\Auth;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+    use RefreshDatabase;
+
     #[Test]
-    public function muestra_formulario_de_login(): void
+    public function muestra_el_formulario_de_login(): void
     {
-        $this->markTestSkipped('Completar cuando exista flujo Auth::attempt y redirección.');
+        $this->withoutVite();
+
+        $this->get(route('login'))
+            ->assertOk()
+            ->assertViewIs('auth.login');
+    }
+
+    #[Test]
+    public function un_usuario_puede_autenticarse_con_credenciales_validas(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'admin@jass.pe',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+        ]);
+
+        $response = $this->post(route('login.store'), [
+            'email' => 'admin@jass.pe',
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticatedAs($user);
+        $response->assertRedirect(route('admin.dashboard'));
+    }
+
+    #[Test]
+    public function no_autentica_con_credenciales_invalidas(): void
+    {
+        User::factory()->create([
+            'email' => 'admin@jass.pe',
+            'password' => Hash::make('password'),
+        ]);
+
+        $response = $this->from(route('login'))->post(route('login.store'), [
+            'email' => 'admin@jass.pe',
+            'password' => 'clave-incorrecta',
+        ]);
+
+        $this->assertGuest();
+        $response->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+    }
+
+    #[Test]
+    public function valida_que_email_y_password_sean_obligatorios(): void
+    {
+        $response = $this->from(route('login'))->post(route('login.store'), [
+            'email' => '',
+            'password' => '',
+        ]);
+
+        $response->assertRedirect(route('login'))
+            ->assertSessionHasErrors(['email', 'password']);
+        $this->assertGuest();
+    }
+
+    #[Test]
+    public function un_invitado_es_redirigido_al_login_al_acceder_a_rutas_protegidas(): void
+    {
+        $this->get('/admin')
+            ->assertRedirect(route('login'));
+
+        $this->get(route('agua.cobros.index'))
+            ->assertRedirect(route('login'));
+    }
+
+    #[Test]
+    public function la_sesion_se_regenera_despues_del_login(): void
+    {
+        User::factory()->create([
+            'email' => 'admin@jass.pe',
+            'password' => Hash::make('password'),
+        ]);
+
+        $this->get(route('login'));
+        $sessionIdAntes = session()->getId();
+
+        $this->post(route('login.store'), [
+            'email' => 'admin@jass.pe',
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $this->assertNotSame($sessionIdAntes, session()->getId());
+    }
+
+    #[Test]
+    public function un_usuario_autenticado_puede_cerrar_sesion(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('logout'));
+
+        $this->assertGuest();
+        $response->assertRedirect(route('login'));
     }
 }

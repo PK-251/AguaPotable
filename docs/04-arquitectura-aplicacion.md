@@ -24,7 +24,7 @@ La aplicación es un **sistema de información transaccional** para el dominio d
 
 **Responsabilidad:** Casos de uso del dominio: **cálculo de cobro**, **registro de pago** (con transacción), **series de comprobante**, **generación/ubicación de PDF**, **cierre o generación de reporte mensual**, **importación de padrón**, **exportaciones**, **auditoría estructurada**.
 
-Para operaciones críticas: **`DB::transaction`**, reintentos o idempotencia donde aplique, y emisión de **Events** si otro módulo debe reaccionar (notificaciones, registro de auditoría).
+Para operaciones críticas: `**DB::transaction`**, reintentos o idempotencia donde aplique, y emisión de **Events** si otro módulo debe reaccionar (notificaciones, registro de auditoría).
 
 ### 4. Repositories (opcional, selectivo)
 

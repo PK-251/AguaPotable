@@ -2,21 +2,23 @@
 
 ## Stack oficial (obligatorio salvo decisión documentada)
 
-| Capa / uso | Tecnología |
-|------------|------------|
-| Framework | **Laravel 12** |
-| Lenguaje | **PHP 8.2+** |
-| Base de datos | **MariaDB / MySQL** |
-| UI servidor | **Blade** |
-| UI componentes y layout | **Bootstrap 5.3** |
-| CSS/JS en frontend | Vite; estilos propios mínimos y coherentes con Bootstrap |
-| Autenticación API / tokens | **Laravel Sanctum** |
-| Comprobantes y reportes PDF | **barryvdh/laravel-dompdf (DomPDF)** |
-| Códigos QR en PDF o enlaces | Integración dedicada (paquete o servicio) cuando se implemente; **debe formar parte del diseño** de RF-07 |
-| Pruebas backend | **PHPUnit** con convenciones de Laravel |
-| Pruebas E2E (fase posterior a estabilizar flujos) | A definir (p. ej. Cypress, Playwright); no sustituyen tests automatizados de API/feature |
-| Carga / estrés puntuales | p. ej. k6, JMeter (entornos controlados) |
-| Control de versiones | Git (remoto acorde al equipo) |
+
+| Capa / uso                                        | Tecnología                                                                                                |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Framework                                         | **Laravel 12**                                                                                            |
+| Lenguaje                                          | **PHP 8.2+**                                                                                              |
+| Base de datos                                     | **MariaDB / MySQL**                                                                                       |
+| UI servidor                                       | **Blade**                                                                                                 |
+| UI componentes y layout                           | **Bootstrap 5.3**                                                                                         |
+| CSS/JS en frontend                                | Vite; estilos propios mínimos y coherentes con Bootstrap                                                  |
+| Autenticación API / tokens                        | **Laravel Sanctum**                                                                                       |
+| Comprobantes y reportes PDF                       | **barryvdh/laravel-dompdf (DomPDF)**                                                                      |
+| Códigos QR en PDF o enlaces                       | Integración dedicada (paquete o servicio) cuando se implemente; **debe formar parte del diseño** de RF-07 |
+| Pruebas backend                                   | **PHPUnit** con convenciones de Laravel                                                                   |
+| Pruebas E2E (fase posterior a estabilizar flujos) | A definir (p. ej. Cypress, Playwright); no sustituyen tests automatizados de API/feature                  |
+| Carga / estrés puntuales                          | p. ej. k6, JMeter (entornos controlados)                                                                  |
+| Control de versiones                              | Git (remoto acorde al equipo)                                                                             |
+
 
 **Sanctum** y **DomPDF** forman parte del enfoque oficial: **no deben eliminarse** ni sustituirse sin acuerdo y documentación (ADR o nota en este repositorio).
 

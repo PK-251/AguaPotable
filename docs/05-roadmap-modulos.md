@@ -13,6 +13,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Eliminar o reemplazar pruebas plantilla que no aporten (p. ej. `ExampleTest`); sustituir por un test de humo de la app si se desea (ruta pública, health).
 
 **Pruebas mínimas (en paralelo):**  
+
 - Un test de **smoke** (p. ej. ruta pública 200) si se mantiene cobertura mínima de arranque.  
 - Alinear `phpunit.xml` y estructura de `tests/`.
 
@@ -25,6 +26,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Sanctum listo para API; sin lógica de negocio en controladores de auth.
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Feature:** acceso a ruta protegida sin sesión → redirección; con usuario válido → 200.  
 - **Feature:** credenciales inválidas → rechazo.  
 - **Unit (opc):** mapeo de enum o helper de roles si existen.  
@@ -39,6 +41,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Nada de cálculo de deuda falso en la vista: preparar servicios o queries preparadas.
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Feature:** listado, filtro, creación/actualización con FormRequest.  
 - **Unit:** reglas o helpers de búsqueda/unicidad (código padrón) si hay clase dedicada.  
 - **Integración (si hay FK complejas):** integridad padrón–tarifa.
@@ -52,6 +55,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Actualización de estados o pendientes según el modelo (sin inventar columnas: revisar migraciones).
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Unit:** múltiples casos de cálculo (sin multa, con multa, con deuda).  
 - **Feature:** flujo completo de registro de pago (HTTP) con aserción en BD.  
 - **Integración:** transacción: fallo a mitad y rollback donde corresponda.
@@ -64,6 +68,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Job si la generación es costosa; descarga autorizada (policy).
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Unit (opc):** generación de datos para plantilla, checksum de plantilla.  
 - **Feature:** endpoint de descarga con policy (403 sin permiso, 200 con permiso).  
 - **Integración:** que el `pdf_path` o equivalente se persista y el archivo exista en disco de test (`Storage::fake`).
@@ -76,6 +81,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Egresos con auditoría; vínculo a reporte o periodo según requerimientos y esquema.
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Feature:** creación y aplicación de multa, impacto en un cobro simulado.  
 - **Feature:** egresos y permisos.  
 - **Unit:** totales o validaciones de montos.
@@ -88,6 +94,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Comando programado o job de cierre; permisos de aprobación.
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Unit:** cálculo de totales a partir de fixtures.  
 - **Integración:** doble cierre del mismo periodo → rechazo o no duplicado.  
 - **Feature:** flujo de generación o aprobación con usuario admin.
@@ -100,6 +107,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - Rate limiting y políticas: un vecino no accede a datos ajenos.
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Feature API:** autenticación, `me`, deuda, listado de pagos con `actingAs` + token.  
 - **Feature web portal:** acceso a rutas portal.
 
@@ -112,6 +120,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 - **Pruebas de rendimiento** puntuales (consultas a padrón, cierre) en entorno aislado.
 
 **Pruebas mínimas (en paralelo):**  
+
 - **Performance / carga (opc.):** escenarios con datasets grandes en CI nocturna o manual.  
 - Revisar que no queden módulos críticos sin test asociado.
 
@@ -119,17 +128,19 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 
 ## Módulos RF ↔ fases (referencia rápida)
 
-| RF   | Fases principales |
-|------|---------------------|
-| RF-01| 1, 7 |
-| RF-02, RF-03 | 2 |
-| RF-04, RF-05, RF-06 | 3 |
-| RF-07, RF-08 | 4 |
-| RF-11 (parte tarifas) | 2 |
-| RF-11 (multas) | 5 |
-| RF-12| 5 |
-| RF-09, RF-10 | 6 |
-| API / portal | 7 |
+
+| RF                    | Fases principales |
+| --------------------- | ----------------- |
+| RF-01                 | 1, 7              |
+| RF-02, RF-03          | 2                 |
+| RF-04, RF-05, RF-06   | 3                 |
+| RF-07, RF-08          | 4                 |
+| RF-11 (parte tarifas) | 2                 |
+| RF-11 (multas)        | 5                 |
+| RF-12                 | 5                 |
+| RF-09, RF-10          | 6                 |
+| API / portal          | 7                 |
+
 
 ---
 

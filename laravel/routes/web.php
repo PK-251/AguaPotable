@@ -27,6 +27,10 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [LoginController::class, 'store'])->name('login.store');
 });
 
+Route::post('logout', [LoginController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
     Route::get('auditoria', [AuditLogController::class, 'index'])->name('audit.index');

@@ -7,16 +7,18 @@
 
 ## Tablas del dominio (negocio)
 
-| Tabla / entidad lógica | Propósito |
-|------------------------|-----------|
-| **tarifas** | Valores de la cuota y metadatos de vigencia; base para calcular el componente de cuota del cobro. |
-| **padron_usuarios** | Padrón de vecinos: identificación, datos de contacto/ubicación según el esquema, estado del servicio, tarifa asignada. **Tabla de mayor volumen** y foco de búsquedas. |
-| **multas** | Catálogo de multas o recargos configurables (concepto, monto, reglas de aplicación según el modelo). |
-| **multas_usuario** | Vínculo entre padrón y multas aplicadas; estado y montos a incorporar al cobro o historial. |
-| **pagos** | Un registro por operación de cobro: periodo, desglose de montos, estado, relación con operador, referencia a PDF/comprobante. **Entidad transaccional crítica.** |
-| **egresos** | Gastos u otros movimientos de salida de la administración, asociados a operador y, si aplica, a periodo o reporte. |
-| **reportes_mensuales** | Cierre o consolidado mensual: agregación de ingresos, egresos, balances, estados y trazas de aprobación según el esquema. |
-| **activity_logs** | **Auditoría y trazabilidad**: acciones sensibles (pagos, anulaciones, cierres, cambios de tarifa, etc.) con payload coherente para reconstrucción. |
+
+| Tabla / entidad lógica | Propósito                                                                                                                                                              |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **tarifas**            | Valores de la cuota y metadatos de vigencia; base para calcular el componente de cuota del cobro.                                                                      |
+| **padron_usuarios**    | Padrón de vecinos: identificación, datos de contacto/ubicación según el esquema, estado del servicio, tarifa asignada. **Tabla de mayor volumen** y foco de búsquedas. |
+| **multas**             | Catálogo de multas o recargos configurables (concepto, monto, reglas de aplicación según el modelo).                                                                   |
+| **multas_usuario**     | Vínculo entre padrón y multas aplicadas; estado y montos a incorporar al cobro o historial.                                                                            |
+| **pagos**              | Un registro por operación de cobro: periodo, desglose de montos, estado, relación con operador, referencia a PDF/comprobante. **Entidad transaccional crítica.**       |
+| **egresos**            | Gastos u otros movimientos de salida de la administración, asociados a operador y, si aplica, a periodo o reporte.                                                     |
+| **reportes_mensuales** | Cierre o consolidado mensual: agregación de ingresos, egresos, balances, estados y trazas de aprobación según el esquema.                                              |
+| **activity_logs**      | **Auditoría y trazabilidad**: acciones sensibles (pagos, anulaciones, cierres, cambios de tarifa, etc.) con payload coherente para reconstrucción.                     |
+
 
 ## Tablas de soporte (framework o técnica)
 

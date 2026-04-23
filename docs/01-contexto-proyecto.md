@@ -45,20 +45,22 @@ Esto provoca, entre otros riesgos:
 
 ## Requisitos funcionales (referencia)
 
-| Código   | Nombre |
-|----------|--------|
-| RF-01    | Autenticación y control de acceso |
-| RF-02    | Carga / visualización de usuarios con deuda |
-| RF-03    | Búsqueda digital de usuario (padrón) |
-| RF-04    | Cálculo automático del monto a cobrar |
-| RF-05    | Registro digital del pago |
-| RF-06    | Registro y seguimiento de pendientes (deuda / periodos) |
-| RF-07    | Generación de comprobante PDF (numeración, QR) |
-| RF-08    | Entrega / descarga del comprobante al usuario |
-| RF-09    | Generación de reporte mensual automático |
-| RF-10    | Validación del reporte y apoyo a rendición de cuentas |
-| RF-11    | Gestión de multas y tarifas |
-| RF-12    | Gestión de egresos |
+
+| Código | Nombre                                                  |
+| ------ | ------------------------------------------------------- |
+| RF-01  | Autenticación y control de acceso                       |
+| RF-02  | Carga / visualización de usuarios con deuda             |
+| RF-03  | Búsqueda digital de usuario (padrón)                    |
+| RF-04  | Cálculo automático del monto a cobrar                   |
+| RF-05  | Registro digital del pago                               |
+| RF-06  | Registro y seguimiento de pendientes (deuda / periodos) |
+| RF-07  | Generación de comprobante PDF (numeración, QR)          |
+| RF-08  | Entrega / descarga del comprobante al usuario           |
+| RF-09  | Generación de reporte mensual automático                |
+| RF-10  | Validación del reporte y apoyo a rendición de cuentas   |
+| RF-11  | Gestión de multas y tarifas                             |
+| RF-12  | Gestión de egresos                                      |
+
 
 ## Actores
 
