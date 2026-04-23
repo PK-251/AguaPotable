@@ -1,0 +1,39 @@
+---
+description: Blade + Bootstrap 5.3; UI clara; sin lógica de negocio en vistas; data-cy
+globs:
+  - "laravel/resources/views/**/*.blade.php"
+  - "laravel/resources/js/**/*.js"
+  - "laravel/resources/css/**/*.css"
+alwaysApply: true
+---
+
+## Stack de interfaz (oficial)
+
+1. **Blade** + **Bootstrap 5.3** (con Vite) es el **frontend principal** (panel, administración, portal renderizado en servidor). **No** proponer **Tailwind** como solución de layout/estilos global.
+2. Estilos adicionales: mínimos, coherentes con Bootstrap (variables, utilidades, componentes) — evitar un segundo “framework de utilidades” competidor.
+
+## Separación de responsabilidades
+
+3. **Vistas Blade** — Solo presentación: formularios, tablas, alertas, paginación, componentes. **Nada** de cálculo de importes, reglas de cobro, ni reglas de negocio reutilizables.
+4. Cálculos, totales y decisiones: vienen del **Service** o del controlador **solo** como datos ya preparados (array/DTO) para mostrar.
+5. JS: **fino y mantenible** (confirmaciones, búsqueda, foco, envío vía `fetch` si hace falta), compatible con Vite; no reescribir en JS la lógica de negocio del backend.
+
+## Experiencia de uso
+
+6. **Operador y administrador** trabajan a menudo en caja/escritorio: priorizar **claridad**, tablas legibles, botones con jerarquía, mensajes de error visibles, formularios con etiquetas explícitas.
+7. Diferenciar con claridad (menú, títulos, color suave) **rol administrador** vs **operador** cuando conviva en la misma base de vistas.
+8. Formularios críticos (login, búsqueda padrón, registro de pago, multas, tarifas, egresos, cierres) — priorizar **validación visual** (Bootstrap validation, `@error`, feedback inmediato).
+
+## Componentes y reutilización
+
+9. Reutilizar **layouts** y **parciales** (componentes Blade o `@include` coherente con el repo). Evitar copiar 200 líneas de formulario en cada pantalla.
+10. Paginación: usar el driver acorde a Bootstrap en Laravel (p. ej. `Paginator::useBootstrapFive()` en `AppServiceProvider` si aplica al proyecto).
+
+## Testing E2E y selectores
+
+11. En elementos clave (botones de confirmar pago, enviar cierre, descargar comprobante) conviene añadir **`data-cy="..."`** estables **sin** atarlos a clases de estilo, para pruebas E2E futuras. No en todos los `div` — solo en **puntos de interacción críticos** acordados en el módulo.
+
+## Referencia
+
+- `docs/04-arquitectura-aplicacion.md` — dónde vive la lógica.
+- `docs/02-stack-y-reglas-tecnicas.md` — stack rector.

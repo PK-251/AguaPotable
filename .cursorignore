@@ -1,0 +1,54 @@
+# =============================
+# AguaPotable - .cursorignore
+# =============================
+
+# Dependencias pesadas
+laravel/node_modules/**
+laravel/vendor/**
+
+# Entorno y secretos
+laravel/.env
+laravel/.env.*
+!laravel/.env.example
+
+# Build / cache / logs
+laravel/public/build/**
+laravel/bootstrap/cache/**
+laravel/storage/framework/cache/**
+laravel/storage/framework/sessions/**
+laravel/storage/framework/testing/**
+laravel/storage/framework/views/**
+laravel/storage/logs/**
+laravel/.phpunit.result.cache
+
+# Archivos generados de storage
+laravel/storage/app/private/comprobantes/**
+laravel/storage/app/private/exports/**
+laravel/storage/app/private/imports/**
+laravel/storage/app/private/qrcodes/**
+laravel/storage/app/private/reportes-mensuales/**
+laravel/storage/app/temp/**
+
+# Git interno
+.git/**
+!.gitignore
+
+# Duplicados que no deben indexarse en Cursor
+laravel/.cursor/**
+laravel/docs/**
+
+# Artefactos locales
+reporte_cambios.txt
+*.log
+*.tmp
+*.cache
+*.zip
+*.tar
+*.gz
+
+# Editor / sistema
+.vscode/**
+.idea/**
+.DS_Store
+Thumbs.db
+desktop.ini

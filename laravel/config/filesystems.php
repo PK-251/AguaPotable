@@ -60,6 +60,48 @@ return [
             'report' => false,
         ],
 
+        'agua_comprobantes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private/comprobantes'),
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'agua_reportes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private/reportes-mensuales'),
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'agua_exports' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private/exports'),
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'agua_imports' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private/imports'),
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'agua_qrcodes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private/qrcodes'),
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'agua_temp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/temp'),
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*

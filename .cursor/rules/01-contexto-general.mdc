@@ -1,0 +1,45 @@
+---
+description: Contexto de dominio y alcance del sistema Agua Potable (J.A.S.S. QUILCATA)
+globs: []
+alwaysApply: true
+---
+
+## Proyecto y organización
+
+Este repositorio es el **Sistema Web de Gestión de Pagos de Agua Potable – J.A.S.S. QUILCATA** (Sara-Sara, Lucanas, Ayacucho, Perú).
+
+## Problema que ataca
+
+Hoy el cobro se apoya en **talonarios en papel, cuaderno de campo y transcripción mensual a Excel**, con errores de cálculo, búsquedas lentas, riesgo de pérdida de datos, doble trabajo, verificaciones manuales y comprobantes poco estandarizados. El sistema busca **digitalizar y trazar** todo el flujo con **registro en tiempo real** y documentos (PDF) coherentes.
+
+## Objetivo del sistema
+
+Digitalizar y automatizar el **cobro mensual** del agua potable: **calcular** importes (tarifas, deudas, multas), **registrar pagos**, **generar comprobantes PDF con QR**, gestionar **multas, tarifas, egresos** y **reportes mensuales** consolidados, con **auditoría** y **API REST** (Sanctum) para el **portal** e integraciones futuras.
+
+## Alcance (escala)
+
+Debe implementarse y evolucionarse como **plataforma en uso** capaz de **atender a toda la población inscrita en el padrón**, con incremento sostenido de tráfico, almacenamiento y reportes. Cualquier solución (consultas, colas, backups) debe considerar **volumen poblacional y transaccional**, no un prototipo pequeño.
+
+## Dominio (resumen)
+
+- Padrón de usuarios del servicio; **tarifas** y **multas** (catálogo y asignación por usuario).
+- **Pagos** y comprobantes; **egresos**; **reportes mensuales** (cierre y validación).
+- **Comprobantes PDF** con **QR**; almacenamiento y entrega bajo reglas de seguridad.
+- **ActivityLog** / trazas para acciones críticas.
+- **Sanctum** y **DomPDF** son piezas oficiales del enfoque; no proponer su eliminación.
+
+## Actores
+
+- **Administrador JASS** — configuración, usuarios del sistema, validaciones y cierres según rol.
+- **Operador / cajero JASS** — búsqueda, cobro, registro, emisión bajo permisos.
+- **Usuario del servicio (vecino)** — portal (y API) según se implemente.
+- **Sistema automático** — colas, cierres, jobs, notificaciones.
+
+## Stack rector (resumen; detalle en docs)
+
+- **Laravel 12**, **PHP 8.2+**, **MariaDB/MySQL**, **Blade**, **Bootstrap 5.3** (Vite), **Sanctum**, **DomPDF**, PHPUnit. **No** Tailwind como solución principal.
+- Lógica de negocio en **Services**; validación en **FormRequest**; **migraciones** como única fuente de esquema; **pruebas en paralelo** con cada módulo que tenga lógica (ver `docs/06-testing-y-calidad.md` y regla `05-reglas-testing.mdc`).
+
+## Actitud ante el cambio
+
+Toda sugerencia de código, tablas o módulos nuevos debe **revisar primero** migraciones y modelos existentes, y **alinearse** con el flujo real de cobro y la organización J.A.S.S. QUILCATA.

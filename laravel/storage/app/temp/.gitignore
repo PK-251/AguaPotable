@@ -1,0 +1,9 @@
+# Temporales: archivos generados; conservar estructura
+*
+!.gitignore
+!import-uploads/
+!import-uploads/.gitkeep
+!pdf-generation/
+!pdf-generation/.gitkeep
+!locks/
+!locks/.gitkeep

@@ -1,0 +1,41 @@
+---
+description: Pruebas en paralelo al desarrollo; sin ExampleTest; mínimos por módulo
+globs:
+  - "laravel/tests/**/*.php"
+  - "laravel/app/**/*.php"
+alwaysApply: true
+---
+
+## Regla de oro
+
+1. **Cada módulo o entrega que incluya lógica de negocio** (cálculo, reglas, transacción, cierre, PDF, colas) **debe** incorporar **en el mismo ciclo** las **pruebas mínimas** adecuadas. **Prohibido** dejar un “hito de calidad al final” del proyecto.
+2. Toda lógica **nueva** en Services, Rules, Jobs o cálculo debe tener **cobertura** con al menos: **prueba unitaria** o **integración** según dónde viva el riesgo.
+3. **No mantener** los **`ExampleTest`** por defecto de Laravel salvo reemplazar por un test de **smoke** explícito del proyecto (p. ej. ruta pública) — los ejemplos genéricos no aportan al dominio y confunden el estándar de calidad.
+
+## Tipos mínimos (elegir según módulo)
+
+4. **Unitarias** — Cálculo de monto, reglas de periodo, helpers de dinero, DTO, validaciones puras. Ubicación: `tests/Unit/...`
+5. **Feature (HTTP / API)** — Rutas, `FormRequest`, auth, policy (403/200), JSON con Resource. Ubicación: `tests/Feature/...` (Web, Api, Portal).
+6. **Integración** — Transacciones, persistencia coherente, `Storage::fake`, doble cierre de reporte, jobs en cola sync. Ubicación: `tests/Integration/...`
+7. **E2E (posterior, no sustituto)** — Flujos críticos con navegador; usar `data-cy` en pasos clave. No obligatorio en el primer commit de cada módulo lógico, pero el roadmap sí contempla fases.
+8. **Rendimiento** — Opcional, bajo carga o datasets grandes, entornos aislados; `tests/Performance/` o job externo.
+
+## Por módulo (checklist mínima)
+
+- **Autenticación y roles (RF-01):** feature de login, acceso a ruta protegida, credenciales inválidas; API con token si aplica.
+- **Padrón y búsqueda (RF-02/03):** feature de listado/filtro; reglas o unicidad de código; integración de FK padrón–tarifa si es sensible.
+- **Cálculo y pago (RF-04/05/06):** **unit** de cálculo; **feature** de registro; **integración** de transacción/rollback.
+- **Comprobante PDF + QR (RF-07/08):** feature de descarga con policy; integración con `Storage::fake`.
+- **Multas, tarifas, egresos (RF-11, RF-12):** feature de formularios; impacto de multa en cobro si hay servicio (integración o unit con fixtures).
+- **Reporte mensual (RF-09/10):** unit de totales; **integración** de idempotencia (no cierre duplicado); feature de aprobación si hay rol admin.
+- **API / portal:** feature API con `actingAs` + Sanctum; aislamiento (no leer pago de otro vecino) donde aplique.
+- **Auditoría:** feature o integración que verifique registro de acción trazable tras operación crítica (si el diseño lo exige).
+
+## Convención al proponer código
+
+9. Al implementar o sugerir un **nuevo** Service, **Job** o flujo, **mencionar o esbozar** el **test mínimo** asociado (qué aserción, qué dato) en el mismo mensaje o PR.
+10. Aserciones **estables** (BD, estructura JSON, HTTP); evitar anclar el test a un texto de marketing en la UI.
+
+## Documentación
+
+- Ver `docs/06-testing-y-calidad.md` y `docs/05-roadmap-modulos.md` (columna de pruebas por fase).

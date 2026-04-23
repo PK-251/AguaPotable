@@ -1,0 +1,40 @@
+---
+description: Límites no negociables de stack, dominio, calidad y pruebas
+globs: []
+alwaysApply: true
+---
+
+## Stack y plataforma
+
+1. **Laravel 12** y **PHP 8.2+**; no proponer rebajar o sustituir el framework de forma ad hoc.
+2. **Frontend principal:** **Blade + Bootstrap 5.3** (Vite). **No** proponer **Tailwind** como solución de estilos/layout global ni añadirlo al pipeline por defecto.
+3. **Base de datos:** **MariaDB/MySQL**; esquema gobernado por **migraciones** — ver regla de BD.
+4. **API y tokens:** **Laravel Sanctum** — **no eliminar** ni sustituir sin acuerdo documentado; es parte del enfoque portal/integración.
+5. **PDF:** **barryvdh/laravel-dompdf (DomPDF)** — **no eliminar**; comprobantes y reportes oficiales se apoyan en él. Integración de **QR** en PDF es objetivo de producto, no un adorno optativo a largo plazo.
+
+## Arquitectura y dominio
+
+6. **No** situar lógica de negocio compleja en **controladores** ni en **vistas Blade**; usar **Services** + **FormRequest** + **Policies** según el caso.
+7. **Prohibido** inventar **columnas, tablas, endpoints o relaciones** sin cruzar con **migraciones y modelos**; si hace falta, indicar explícitamente que requiere **migración** y criterio de negocio.
+8. Todo código debe alinearse con **J.A.S.S. QUILCATA**, el **cobro de agua potable** y actores reales (admin, operador, vecino, sistema automático). Evitar nombres y flujos genéricos de tutoriales.
+9. **No** asumir que un módulo UI “ya está listo” si no hay rutas, servicios o pruebas: la documentación y las reglas describen el **objetivo**; el código acota el **estado real**.
+
+## Pruebas (no negociable con la lógica)
+
+10. **Ningún** módulo con **reglas de negocio** o **transacciones críticas** se considera completo **sin** el paquete mínimo de pruebas definido en `docs/06-testing-y-calidad.md` y `05-reglas-testing.mdc` (en paralelo al desarrollo).
+11. Proponer **código** sin al menos **señalar** el test mínimo asociado es **insuficiente** para módulos de cobro, cierres, PDF, API y portal.
+
+## Higiene y continuidad
+
+12. Código **mantenible, legible, en español razonable** en el dominio; evitar deuda intencionada bajo el argumento de “ir rápido sin tests”.
+13. **Crecimiento:** tener presente padrón y pagos a escala; listados **paginados**; tareas **pesadas en cola**; almacenamiento de comprobantes **privado** y entrega controlada.
+
+## Resumen
+
+| Tema        | Límites |
+|------------|---------|
+| UI         | Blade + Bootstrap 5.3; no Tailwind global |
+| PDF / API  | DomPDF y Sanctum se mantienen |
+| Lógica     | Services, no controladores/vistas profundas |
+| Esquema    | Solo migraciones; no inventar |
+| Pruebas    | Paralelas a la lógica; no fase final |

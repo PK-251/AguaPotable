@@ -1,0 +1,39 @@
+---
+description: Reglas backend Laravel – capas, negocio, transacciones, auditoría, pruebas
+globs:
+  - "laravel/app/**/*.php"
+  - "laravel/routes/**/*.php"
+  - "laravel/database/**/*.php"
+alwaysApply: true
+---
+
+## Capas y responsabilidad
+
+1. **Controladores** — Delgados: reciben, delegan, responden (vista/JSON). **Prohibido** mezclar cálculo de cobro, cierres contables, generación de PDF o reglas de negocio extensas.
+2. **FormRequest** — Validación y `authorize` por request. No sustituyen al servicio: las invariantes de negocio y consistencia con la BD viven en **Services**.
+3. **Services** — Lógica de negocio, orquestación, múltiples modelos, **cálculo de monto a cobrar**, registro de pago, cierre de reporte, comprobante, importaciones. Nombres del dominio en español razonable.
+4. **Policies** — Autorización por modelo/acción (anular, aprobar cierre, ver comprobante ajeno, etc.).
+5. **Repositories** — **Solo** si hay consultas complejas, reutilizables o con alto volumen; no envolver Eloquent en capas inútiles.
+6. **Jobs** — Procesos largos: PDF en lote, importaciones masivas, regeneración de reporte.
+7. **Events + Listeners** — Efectos colaterales: auditoría, notificaciones; el núcleo transaccional en el **Service** con criterio e idempotencia.
+8. **API Resources** — Respuestas JSON limpias, sin datos sensibles de más, coherentes con el portal/integración.
+
+## Operaciones críticas
+
+- **Pagos, anulaciones, cierres de reporte, asignación de multas** con impacto en cobro: usar **`DB::transaction`** cuando varias filas o tablas deban quedar **consistentes**.
+- Tras operaciones que lo requieran, dejar rastro: **`ActivityLog`**, log estructurado, o evento de auditoría — según criterio del módulo.
+- Comprobantes y reportes: rutas a archivos bajo almacenamiento **privado**; acceso vía ruta con **policy** y, si aplica, traza en auditoría.
+
+## Esquema y modelos
+
+- **Migraciones = fuente única** del esquema. **No** inventar columnas, relaciones o tablas en código sin validar en migraciones y modelo.
+- Modelos existentes: `User`, `PadronUsuario`, `Tarifa`, `Multa`, `MultaUsuario`, `Pago`, `Egreso`, `ReporteMensual`, `ActivityLog` (nombres/paths según el código real).
+
+## Pruebas (obligatorias en el mismo entregable)
+
+- Cada **módulo nuevo o cambio con lógica** debe incluir el **mínimo de pruebas** adecuado (unit, feature, integración) en **paralelo** al desarrollo — ver `docs/06-testing-y-calidad.md`.
+- Al proponer un **Service o Job** importante, proponer **explícitamente** los nombres/casos de prueba mínimos (cálculo, transacción, 403, etc.).
+
+## Compatibilidad
+
+- Proyecto **Laravel 12**; no romper convenciones ni versión. **Mantener** **Sanctum** y **DomPDF**; no proponer quitarlos sin acuerdo documentado.

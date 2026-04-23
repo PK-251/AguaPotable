@@ -1,0 +1,30 @@
+---
+description: Base de datos – migraciones como fuente oficial, integridad, escala, dinero
+globs:
+  - "laravel/database/migrations/*.php"
+  - "laravel/app/Models/**/*.php"
+alwaysApply: true
+---
+
+## Autoridad del esquema
+
+1. **Solo** las **migraciones de Laravel** definen el esquema. Cualquier `schema.sql`, diagrama o documento desactualizado no puede contradecir las migraciones.
+2. **Prohibido** proponer columnas, tablas, índices o FK en código o docs sin **validar** contra migraciones y necesidad de negocio. Si hace falta un cambio, hacerlo **vía migración** con `down()` coherente.
+
+## Integridad y trazas
+
+3. Respetar el dominio existente: `tarifas`, `multas`, `padron_usuarios`, `multas_usuario`, `pagos`, `egresos`, `reportes_mensuales`, `activity_logs` (más tablas técnicas del framework).
+4. Los **pagos** y **cierres** deben ser **rastreables** (padrón, operador, periodo, comprobante/serie según el modelo).
+5. **Reporte mensual** y balances deben apoyarse en **datos persistidos**, no en totales “volátiles” no guardados.
+6. **Dinero:** tipos `decimal` con precisión adecuada en migración; en modelos, **casts** a decimal y nunca asumir float para persistir importes. Alinear redondeo con el negocio (Services).
+
+## Escala (población completa)
+
+7. Tratar el **padrón** y los **pagos** como tablas de **gran volumen**: diseñar y revisar **índices** alineados a búsquedas reales (código, nombre, periodo, fechas, estado). Evitar escaneos completos y N+1 en listados.
+8. **Consultas** de listado deben ser **paginadas**; exportaciones masivas a **Jobs**; no asumir que cabe en memoria.
+9. **Cambio de esquema** en producción: planificar migración con cuidado; documentar riesgo y rollback.
+
+## Código
+
+10. Eloquent: **relaciones** y **scopes** expresivos; no SQL crudo salvo justificación (performance, reporte ad hoc documentado).
+11. **No** “parchear” con columnas ad hoc sin requerimiento y migración. Si se sugiere una columna nueva, indicar el **porqué** funcional y el impacto en datos existentes.

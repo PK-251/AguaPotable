@@ -1,0 +1,108 @@
+# =========================
+# AguaPotable - .gitignore
+# =========================
+
+# --- Sistema / editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+*.log
+
+# --- Reportes / archivos temporales del repo ---
+reporte_cambios.txt
+
+# --- Node / frontend ---
+laravel/node_modules/
+laravel/npm-debug.log*
+laravel/yarn-debug.log*
+laravel/yarn-error.log*
+laravel/pnpm-debug.log*
+
+# --- Composer / PHP ---
+laravel/vendor/
+
+# --- Entorno Laravel ---
+laravel/.env
+laravel/.env.*.local
+laravel/.phpunit.result.cache
+
+# --- Build / caches ---
+laravel/public/build/
+laravel/bootstrap/cache/*.php
+laravel/storage/framework/cache/*
+laravel/storage/framework/sessions/*
+laravel/storage/framework/testing/*
+laravel/storage/framework/views/*
+laravel/storage/logs/*
+
+# Mantener estructura mínima
+!laravel/storage/framework/cache/.gitignore
+!laravel/storage/framework/cache/data/.gitignore
+!laravel/storage/framework/sessions/.gitignore
+!laravel/storage/framework/testing/.gitignore
+!laravel/storage/framework/views/.gitignore
+!laravel/storage/logs/.gitignore
+
+# --- Storage app: ignorar todo salvo estructura ---
+laravel/storage/app/*
+!laravel/storage/app/.gitignore
+!laravel/storage/app/private/
+!laravel/storage/app/public/
+!laravel/storage/app/temp/
+
+laravel/storage/app/private/*
+!laravel/storage/app/private/.gitignore
+!laravel/storage/app/private/comprobantes/
+!laravel/storage/app/private/exports/
+!laravel/storage/app/private/imports/
+!laravel/storage/app/private/qrcodes/
+!laravel/storage/app/private/reportes-mensuales/
+
+laravel/storage/app/private/comprobantes/*
+!laravel/storage/app/private/comprobantes/.gitkeep
+
+laravel/storage/app/private/exports/*
+!laravel/storage/app/private/exports/.gitkeep
+
+laravel/storage/app/private/imports/*
+!laravel/storage/app/private/imports/.gitkeep
+
+laravel/storage/app/private/qrcodes/*
+!laravel/storage/app/private/qrcodes/.gitkeep
+
+laravel/storage/app/private/reportes-mensuales/*
+!laravel/storage/app/private/reportes-mensuales/.gitkeep
+
+laravel/storage/app/temp/*
+!laravel/storage/app/temp/.gitkeep
+!laravel/storage/app/temp/import-uploads/
+!laravel/storage/app/temp/pdf-generation/
+!laravel/storage/app/temp/locks/
+
+laravel/storage/app/temp/import-uploads/*
+!laravel/storage/app/temp/import-uploads/.gitkeep
+
+laravel/storage/app/temp/pdf-generation/*
+!laravel/storage/app/temp/pdf-generation/.gitkeep
+
+laravel/storage/app/temp/locks/*
+!laravel/storage/app/temp/locks/.gitkeep
+
+# --- Duplicados a no versionar ---
+laravel/.cursor/
+laravel/docs/
+
+# --- Docker / scripts temporales ---
+docker/**/*.log
+scripts/**/*.log
+
+# --- Si guardas backups locales ---
+*.sql.bak
+*.zip
+*.tar
+*.gz

@@ -1,2 +1,13 @@
+# Ignorar archivos reales; versionar estructura con .gitkeep
 *
 !.gitignore
+!comprobantes/
+!comprobantes/.gitkeep
+!exports/
+!exports/.gitkeep
+!imports/
+!imports/.gitkeep
+!qrcodes/
+!qrcodes/.gitkeep
+!reportes-mensuales/
+!reportes-mensuales/.gitkeep
