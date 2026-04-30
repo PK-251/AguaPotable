@@ -4,7 +4,6 @@ namespace Tests\Feature\Web\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -20,6 +19,10 @@ class LoginTest extends TestCase
         $this->get(route('login'))
             ->assertOk()
             ->assertViewIs('auth.login');
+
+        $this->get(route('home'))
+            ->assertOk()
+            ->assertViewIs('auth.login');
     }
 
     #[Test]
@@ -27,7 +30,7 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create([
             'email' => 'admin@jass.pe',
-            'password' => Hash::make('password'),
+            'password' => 'password',
             'role' => 'admin',
         ]);
 
@@ -41,11 +44,45 @@ class LoginTest extends TestCase
     }
 
     #[Test]
+    public function operador_puede_autenticarse_con_credenciales_validas(): void
+    {
+        $user = User::factory()->create([
+            'email' => 'operador@jass.pe',
+            'password' => 'password',
+            'role' => 'operador',
+        ]);
+
+        $response = $this->post(route('login.store'), [
+            'email' => 'operador@jass.pe',
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticatedAs($user);
+        $response->assertRedirect(route('admin.dashboard'));
+    }
+
+    #[Test]
+    public function usuario_autenticado_accede_al_panel_interno(): void
+    {
+        $this->withoutVite();
+
+        $user = User::factory()->create([
+            'password' => 'password',
+            'role' => 'operador',
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('admin.dashboard'))
+            ->assertOk()
+            ->assertViewIs('admin.dashboard');
+    }
+
+    #[Test]
     public function no_autentica_con_credenciales_invalidas(): void
     {
         User::factory()->create([
             'email' => 'admin@jass.pe',
-            'password' => Hash::make('password'),
+            'password' => 'password',
         ]);
 
         $response = $this->from(route('login'))->post(route('login.store'), [
@@ -86,7 +123,7 @@ class LoginTest extends TestCase
     {
         User::factory()->create([
             'email' => 'admin@jass.pe',
-            'password' => Hash::make('password'),
+            'password' => 'password',
         ]);
 
         $this->get(route('login'));
@@ -104,7 +141,9 @@ class LoginTest extends TestCase
     #[Test]
     public function un_usuario_autenticado_puede_cerrar_sesion(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'password' => 'password',
+        ]);
 
         $response = $this->actingAs($user)->post(route('logout'));
 

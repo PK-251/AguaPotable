@@ -23,14 +23,13 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 
 - Login (operadores), sesión, políticas de acceso a rutas de administración.
 - Diferenciar flujos administrador / operador según el modelo de `User` (columna `role` o permisos).
-- Sanctum listo para API; sin lógica de negocio en controladores de auth.
+- Sanctum permanece disponible como infraestructura para futuras integraciones administrativas; no se exponen endpoints API hoy.
 
 **Pruebas mínimas (en paralelo):**  
 
 - **Feature:** acceso a ruta protegida sin sesión → redirección; con usuario válido → 200.  
 - **Feature:** credenciales inválidas → rechazo.  
-- **Unit (opc):** mapeo de enum o helper de roles si existen.  
-- **API (si aplica):** token o flujo básico Sanctum.
+- **Unit (opc):** mapeo de enum o helper de roles si existen.
 
 ---
 
@@ -101,19 +100,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 
 ---
 
-## Fase 7 — Portal y API (portal vecino, integraciones)
-
-- Vistas o SPA mínima según elección; **API REST** con **Resources** y **Sanctum** para deuda, comprobantes, historial (según alcance).
-- Rate limiting y políticas: un vecino no accede a datos ajenos.
-
-**Pruebas mínimas (en paralelo):**  
-
-- **Feature API:** autenticación, `me`, deuda, listado de pagos con `actingAs` + token.  
-- **Feature web portal:** acceso a rutas portal.
-
----
-
-## Fase 8 — Observabilidad, rendimiento, endurecimiento
+## Fase 7 — Observabilidad, rendimiento, endurecimiento
 
 - Índices y optimización de consultas acorde a volumen; colas Redis en producción si aplica.
 - Monitoreo de errores, logs estructurados, backups documentados.
@@ -131,7 +118,7 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 
 | RF                    | Fases principales |
 | --------------------- | ----------------- |
-| RF-01                 | 1, 7              |
+| RF-01                 | 1                 |
 | RF-02, RF-03          | 2                 |
 | RF-04, RF-05, RF-06   | 3                 |
 | RF-07, RF-08          | 4                 |
@@ -139,7 +126,6 @@ La columna **“Pruebas mínimas (en paralelo)”** es obligatoria: definen el c
 | RF-11 (multas)        | 5                 |
 | RF-12                 | 5                 |
 | RF-09, RF-10          | 6                 |
-| API / portal          | 7                 |
 
 
 ---

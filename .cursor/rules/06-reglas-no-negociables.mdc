@@ -9,7 +9,7 @@ alwaysApply: true
 1. **Laravel 12** y **PHP 8.2+**; no proponer rebajar o sustituir el framework de forma ad hoc.
 2. **Frontend principal:** **Blade + Bootstrap 5.3** (Vite). **No** proponer **Tailwind** como solución de estilos/layout global ni añadirlo al pipeline por defecto.
 3. **Base de datos:** **MariaDB/MySQL**; esquema gobernado por **migraciones** — ver regla de BD.
-4. **API y tokens:** **Laravel Sanctum** — **no eliminar** ni sustituir sin acuerdo documentado; es parte del enfoque portal/integración.
+4. **API y tokens:** **Laravel Sanctum** — **no eliminar** ni sustituir sin acuerdo documentado; permanece instalado como infraestructura para futuras integraciones administrativas. El sistema **no** expone hoy un portal de vecinos ni API pública.
 5. **PDF:** **barryvdh/laravel-dompdf (DomPDF)** — **no eliminar**; comprobantes y reportes oficiales se apoyan en él. Integración de **QR** en PDF es objetivo de producto, no un adorno optativo a largo plazo.
 
 ## Arquitectura y dominio
@@ -22,7 +22,7 @@ alwaysApply: true
 ## Pruebas (no negociable con la lógica)
 
 10. **Ningún** módulo con **reglas de negocio** o **transacciones críticas** se considera completo **sin** el paquete mínimo de pruebas definido en `docs/06-testing-y-calidad.md` y `05-reglas-testing.mdc` (en paralelo al desarrollo).
-11. Proponer **código** sin al menos **señalar** el test mínimo asociado es **insuficiente** para módulos de cobro, cierres, PDF, API y portal.
+11. Proponer **código** sin al menos **señalar** el test mínimo asociado es **insuficiente** para módulos de cobro, cierres, PDF y autenticación.
 
 ## Higiene y continuidad
 

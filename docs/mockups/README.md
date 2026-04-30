@@ -61,10 +61,11 @@ Al tomar estos mockups como referencia, se debe:
 - Multas
 - Egresos
 - Reportes mensuales
-- Portal del usuario
 - Comprobantes
 - Auditoría
 - Gestión de usuarios internos
+
+> El módulo "Portal del usuario / Portal de vecinos" fue retirado del alcance del producto. Cualquier mockup heredado de ese módulo no debe reintroducirse en el sistema.
 
 ## Resultado esperado
 

@@ -38,10 +38,8 @@ Esto provoca, entre otros riesgos:
 - Pagos (registro, estados, comprobante)
 - Egresos de la junta
 - Reportes mensuales (cierre, validación, documentos)
-- Comprobantes PDF y entrega al usuario (panel / portal / canales acordados)
+- Comprobantes PDF generados desde el panel interno y entregados por canales acordados (impresión en caja, descarga del operador, etc.)
 - Auditoría de acciones relevantes
-- **Portal** para el vecino (consulta y descargas según diseño)
-- **API REST** (Sanctum) para el portal, apps futuras o integraciones
 
 ## Requisitos funcionales (referencia)
 
@@ -66,7 +64,7 @@ Esto provoca, entre otros riesgos:
 
 - **Administrador JASS** — configuración, usuarios del sistema, cierres sensibles, validación de reportes (según política).
 - **Operador / cajero JASS** — cobro en ventanilla, búsqueda, registro de pagos, emisión o reimpresión controlada.
-- **Usuario del servicio (vecino)** — consulta a través del portal (y API cuando aplique).
+- **Usuario del servicio (vecino)** — receptor del servicio; recibe sus comprobantes a través del operador en caja o por los canales acordados con la junta. **No** accede al sistema (no existe portal de vecinos).
 - **Sistema automático** — colas, cierres programados, generación de PDFs pesados, purga de temporales, notificaciones.
 
 ## Estado actual del proyecto (referencia a código)
@@ -78,7 +76,7 @@ A fecha de la documentación en este repositorio, el producto se apoya en:
 - **Blade + Bootstrap 5.3** y **Vite**; **Sanctum** y **DomPDF** en el stack previsto.
 - **Rutas, vistas, reglas de negocio y pruebas** se completan módulo a módulo; **cada módulo con lógica debe implementarse en paralelo con sus pruebas** (ver `06-testing-y-calidad.md` y `05-roadmap-modulos.md`).
 
-Trabajo pendiente de producto (no exhaustivo): completar autenticación y autorización finas, lógica de negocio en servicios, portal, API, jobs para cargas/PDF, y batería de pruebas por módulo.
+Trabajo pendiente de producto (no exhaustivo): completar autenticación y autorización finas, lógica de negocio en servicios, jobs para cargas/PDF, y batería de pruebas por módulo.
 
 ## Principios rectoras para el desarrollo
 

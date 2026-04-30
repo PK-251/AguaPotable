@@ -20,8 +20,8 @@
             <x-ui.floating-input
                 id="email"
                 name="email"
-                label="Nombre de usuario o email"
-                type="text"
+                label="Correo electrónico"
+                type="email"
                 autocomplete="username"
                 required
                 :value="old('email')"

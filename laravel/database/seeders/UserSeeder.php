@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,38 +13,36 @@ use Illuminate\Support\Facades\Hash;
 | admin@jass.pe    | password  | role=admin
 | operador@jass.pe | password  | role=operador
 |
-| Estas credenciales son SOLO para entorno de desarrollo. En producción
-| deben reemplazarse por contraseñas seguras generadas manualmente.
+| La contraseña se guarda vía modelo User (cast `hashed`). Ejecutar:
+|   php artisan db:seed --class=UserSeeder --force
 |
 */
 class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        $now = now();
-
         $usuarios = [
             [
                 'name' => 'Administrador',
                 'email' => 'admin@jass.pe',
+                'password' => 'password',
                 'role' => 'admin',
             ],
             [
                 'name' => 'Operador JASS',
                 'email' => 'operador@jass.pe',
+                'password' => 'password',
                 'role' => 'operador',
             ],
         ];
 
-        foreach ($usuarios as $usuario) {
-            DB::table('users')->updateOrInsert(
-                ['email' => $usuario['email']],
+        foreach ($usuarios as $attrs) {
+            User::updateOrCreate(
+                ['email' => $attrs['email']],
                 [
-                    'name' => $usuario['name'],
-                    'password' => Hash::make('password'),
-                    'role' => $usuario['role'],
-                    'updated_at' => $now,
-                    'created_at' => $now,
+                    'name' => $attrs['name'],
+                    'password' => $attrs['password'],
+                    'role' => $attrs['role'],
                 ]
             );
         }

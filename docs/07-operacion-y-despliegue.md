@@ -49,14 +49,16 @@ Este documento orienta el **despliegue y operación** cuando el **padrón, el tr
 
 ## Resumen
 
-| Área            | Criterio |
-|-----------------|----------|
-| Archivos        | Discos **privados**, entrega por rutas autenticadas |
-| Carga de trabajo| **Jobs** + cola en producción |
-| Tiempo          | **Scheduler** para cierres y mantenimiento |
-| Datos           | **Backups** de BD y archivos, prueba de restauración |
-| Crecimiento     | **Índices, workers, monitoreo** sin adelantar arquitectura innecesaria |
-| Trazas          | **Logs** + **auditoría** + alertas básicas |
+
+| Área             | Criterio                                                               |
+| ---------------- | ---------------------------------------------------------------------- |
+| Archivos         | Discos **privados**, entrega por rutas autenticadas                    |
+| Carga de trabajo | **Jobs** + cola en producción                                          |
+| Tiempo           | **Scheduler** para cierres y mantenimiento                             |
+| Datos            | **Backups** de BD y archivos, prueba de restauración                   |
+| Crecimiento      | **Índices, workers, monitoreo** sin adelantar arquitectura innecesaria |
+| Trazas           | **Logs** + **auditoría** + alertas básicas                             |
+
 
 ## Documentos relacionados
 

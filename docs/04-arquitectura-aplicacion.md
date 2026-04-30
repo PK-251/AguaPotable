@@ -38,7 +38,7 @@ Para operaciones críticas: `**DB::transaction`**, reintentos o idempotencia don
 
 **Responsabilidad:** **Quién** puede anular pago, generar cierre, editar tarifa, acceder a comprobante de un vecino, etc.
 
-Alinear con roles **administrador / operador** y, si aplica, reglas del portal y API.
+Alinear con roles **administrador / operador** del panel interno.
 
 ### 6. Modelos Eloquent
 
@@ -54,7 +54,7 @@ Alinear con roles **administrador / operador** y, si aplica, reglas del portal y
 
 ### 8. API Resources (JSON)
 
-**Responsabilidad:** **Forma estable** de la respuesta REST para el portal o integraciones: solo campos necesarios, fechas e importes con formato claro, sin filtrar datos sensibles.
+**Responsabilidad:** **Forma estable** de la respuesta REST para futuras integraciones administrativas (Sanctum sigue instalado): solo campos necesarios, fechas e importes con formato claro, sin filtrar datos sensibles. Hoy el sistema no expone API pública.
 
 ### 9. Jobs y colas
 

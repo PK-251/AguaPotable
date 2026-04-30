@@ -4,7 +4,7 @@
 
 | Ruta        | Contenido |
 |------------|------------|
-| `laravel/` | Aplicación **Laravel 12** (API, panel, portal, Vite) |
+| `laravel/` | Aplicación **Laravel 12** (panel administrativo interno, Vite) |
 | `docs/`    | Documentación de producto y operación |
 | `.cursor/` | Reglas y contexto para el asistente (opcional) |
 | `docker/`  | Plantillas de contenedores (Nginx, PHP, MariaDB) — referencia |

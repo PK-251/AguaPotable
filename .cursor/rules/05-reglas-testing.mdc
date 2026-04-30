@@ -15,7 +15,7 @@ alwaysApply: true
 ## Tipos mínimos (elegir según módulo)
 
 4. **Unitarias** — Cálculo de monto, reglas de periodo, helpers de dinero, DTO, validaciones puras. Ubicación: `tests/Unit/...`
-5. **Feature (HTTP / API)** — Rutas, `FormRequest`, auth, policy (403/200), JSON con Resource. Ubicación: `tests/Feature/...` (Web, Api, Portal).
+5. **Feature (HTTP)** — Rutas, `FormRequest`, auth, policy (403/200) del panel interno. Ubicación: `tests/Feature/Web/...`.
 6. **Integración** — Transacciones, persistencia coherente, `Storage::fake`, doble cierre de reporte, jobs en cola sync. Ubicación: `tests/Integration/...`
 7. **E2E (posterior, no sustituto)** — Flujos críticos con navegador; usar `data-cy` en pasos clave. No obligatorio en el primer commit de cada módulo lógico, pero el roadmap sí contempla fases.
 8. **Rendimiento** — Opcional, bajo carga o datasets grandes, entornos aislados; `tests/Performance/` o job externo.
@@ -28,7 +28,6 @@ alwaysApply: true
 - **Comprobante PDF + QR (RF-07/08):** feature de descarga con policy; integración con `Storage::fake`.
 - **Multas, tarifas, egresos (RF-11, RF-12):** feature de formularios; impacto de multa en cobro si hay servicio (integración o unit con fixtures).
 - **Reporte mensual (RF-09/10):** unit de totales; **integración** de idempotencia (no cierre duplicado); feature de aprobación si hay rol admin.
-- **API / portal:** feature API con `actingAs` + Sanctum; aislamiento (no leer pago de otro vecino) donde aplique.
 - **Auditoría:** feature o integración que verifique registro de acción trazable tras operación crítica (si el diseño lo exige).
 
 ## Convención al proponer código

@@ -1,5 +1,5 @@
 /*
- * Topbar — barra superior para admin y portal.
+ * Topbar — barra superior del panel administrativo.
  */
 
 .agua-topbar {
@@ -125,46 +125,6 @@
     border-radius: 50%;
     background-color: var(--agua-danger);
     border: 2px solid var(--agua-surface);
-}
-
-/* Portal topbar horizontal */
-.agua-portal-nav {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    flex: 1 1 auto;
-    flex-wrap: wrap;
-}
-
-.agua-portal-nav__link {
-    padding: 0.5rem 0.9rem;
-    color: var(--agua-text-muted);
-    font-weight: 500;
-    border-radius: var(--agua-radius-md);
-    text-decoration: none;
-    position: relative;
-}
-
-.agua-portal-nav__link:hover {
-    color: var(--agua-text);
-    background-color: var(--agua-surface-alt);
-    text-decoration: none;
-}
-
-.agua-portal-nav__link.is-active {
-    color: var(--agua-primary);
-    font-weight: 600;
-}
-
-.agua-portal-nav__link.is-active::after {
-    content: "";
-    position: absolute;
-    left: 0.9rem;
-    right: 0.9rem;
-    bottom: -2px;
-    height: 3px;
-    border-radius: 3px 3px 0 0;
-    background-color: var(--agua-primary);
 }
 
 /* Contenedor general de contenido admin */

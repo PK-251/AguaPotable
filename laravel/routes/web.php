@@ -13,16 +13,10 @@ use App\Http\Controllers\Agua\PagoController;
 use App\Http\Controllers\Agua\ReporteMensualController;
 use App\Http\Controllers\Agua\TarifaController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Portal\PortalComprobanteController;
-use App\Http\Controllers\Portal\PortalEstadoCuentaController;
-use App\Http\Controllers\Portal\PortalHomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
 Route::middleware('guest')->group(function () {
+    Route::get('/', [LoginController::class, 'create'])->name('home');
     Route::get('login', [LoginController::class, 'create'])->name('login');
     Route::post('login', [LoginController::class, 'store'])->name('login.store');
 });
@@ -47,10 +41,4 @@ Route::prefix('agua')->middleware('auth')->name('agua.')->group(function () {
     Route::get('reportes-mensuales', [ReporteMensualController::class, 'index'])->name('reportes-mensuales.index');
     Route::get('import-export/padron', [ImportExportController::class, 'padron'])->name('import-export.padron');
     Route::get('comprobantes/{pago}', [ComprobanteController::class, 'show'])->name('comprobantes.show');
-});
-
-Route::prefix('portal')->name('portal.')->group(function () {
-    Route::get('/', PortalHomeController::class)->name('home');
-    Route::get('estado-cuenta', PortalEstadoCuentaController::class)->name('estado-cuenta');
-    Route::get('comprobantes', [PortalComprobanteController::class, 'index'])->name('comprobantes.index');
 });

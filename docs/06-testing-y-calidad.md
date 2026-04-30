@@ -34,11 +34,10 @@ Garantizar que el software que gestiona **dinero, padrón y comprobantes** en J.
 
 - **Login y acceso** (RF-01).
 - **Formularios** de pago, padrón, multas, egresos, cierre.
-- **API** con Sanctum: login token, 401/403, respuesta estructurada con Resource.
 
 **Herramientas:** `RefreshDatabase` cuando haya DB; `actingAs` para usuarios.
 
-**Ubicación:** `tests/Feature/Web/...`, `tests/Feature/Api/...`.
+**Ubicación:** `tests/Feature/Web/...`.
 
 ### 3. Pruebas de integración (base de datos, storage, colas)
 
@@ -57,7 +56,7 @@ Garantizar que el software que gestiona **dinero, padrón y comprobantes** en J.
 
 **Qué son:** Ejecutan un **navegador** controlado o cliente que recorre flujos completos: login → búsqueda → pago → comprobante.
 
-**Cuándo:** Tras **estabilizar** flujos críticos; no sustituyen feature/API para lógica. Priorizar: cobro completo, cierre, portal.
+**Cuándo:** Tras **estabilizar** flujos críticos; no sustituyen feature/API para lógica. Priorizar: cobro completo, cierre y emisión de comprobantes.
 
 **Herramientas:** p. ej. Cypress, Playwright; **atributos `data-cy`** en elementos clave (ver reglas de frontend).
 
@@ -85,7 +84,6 @@ Garantizar que el software que gestiona **dinero, padrón y comprobantes** en J.
 | Multas y tarifas (RF-11)        | reglas monto (opc.)    | **sí**                 | impacto en cobro                    | —               | —                     |
 | Egresos (RF-12)                 | —                      | **sí**                 | con reporte (opc.)                  | —               | —                     |
 | Reporte mensual (RF-09/10)      | totales, periodo       | **sí** (flujo)         | **sí** (doble cierre)               | aprobación      | cierre bajo carga     |
-| API / portal                    | —                      | **sí** API + web       | autenticación y aislamiento         | vecino          | —                     |
 | Auditoría                       | —                      | visibilidad admin      | trazas en `ActivityLog` (opc.)      | —               | —                     |
 
 

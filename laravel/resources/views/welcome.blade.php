@@ -1,3 +1,7 @@
+{{--
+    Ya no está enlazada desde routes/web.php: la ruta `home` (`/`) muestra auth.login.
+    Se conserva por si se quiere una landing distinta en el futuro.
+--}}
 @extends('components.layouts.guest')
 
 @section('title', 'J.A.S.S. QUILCATA')
@@ -15,12 +19,7 @@
         <div class="d-flex flex-column gap-2">
             @if (Route::has('login'))
                 <a href="{{ route('login') }}" class="btn btn-primary d-inline-flex align-items-center justify-content-center gap-2">
-                    <x-ui.icon name="login" size="sm" /> Ingreso operadores
-                </a>
-            @endif
-            @if (Route::has('portal.home'))
-                <a href="{{ route('portal.home') }}" class="btn btn-outline-secondary d-inline-flex align-items-center justify-content-center gap-2">
-                    <x-ui.icon name="person" size="sm" /> Portal de vecinos
+                    <x-ui.icon name="login" size="sm" /> Acceder al sistema
                 </a>
             @endif
         </div>

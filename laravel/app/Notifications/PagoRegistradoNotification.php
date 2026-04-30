@@ -29,6 +29,6 @@ class PagoRegistradoNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Pago registrado - J.A.S.S. Quilcata')
-            ->line('Pendiente: detalle de comprobante o enlace al portal.');
+            ->line('Pendiente: detalle de comprobante y referencia al pago registrado.');
     }
 }
