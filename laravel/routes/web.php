@@ -36,9 +36,33 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
 Route::prefix('agua')->middleware('auth')->name('agua.')->group(function () {
     Route::resource('padron', PadronController::class)->except(['destroy']);
+
     Route::get('tarifas', [TarifaController::class, 'index'])->name('tarifas.index');
+    Route::middleware('admin')->group(function () {
+        Route::get('tarifas/create', [TarifaController::class, 'create'])->name('tarifas.create');
+        Route::post('tarifas', [TarifaController::class, 'store'])->name('tarifas.store');
+    });
+    Route::get('tarifas/{tarifa}', [TarifaController::class, 'show'])->name('tarifas.show');
+    Route::middleware('admin')->group(function () {
+        Route::get('tarifas/{tarifa}/edit', [TarifaController::class, 'edit'])->name('tarifas.edit');
+        Route::put('tarifas/{tarifa}', [TarifaController::class, 'update'])->name('tarifas.update');
+    });
+
     Route::get('multas', [MultaController::class, 'index'])->name('multas.index');
+    Route::middleware('admin')->group(function () {
+        Route::get('multas/create', [MultaController::class, 'create'])->name('multas.create');
+        Route::post('multas', [MultaController::class, 'store'])->name('multas.store');
+    });
+    Route::get('multas/{multa}', [MultaController::class, 'show'])->name('multas.show');
+    Route::middleware('admin')->group(function () {
+        Route::get('multas/{multa}/edit', [MultaController::class, 'edit'])->name('multas.edit');
+        Route::put('multas/{multa}', [MultaController::class, 'update'])->name('multas.update');
+    });
+
     Route::get('multas-usuario', [MultaUsuarioController::class, 'index'])->name('multas-usuario.index');
+    Route::get('multas-usuario/aplicar', [MultaUsuarioController::class, 'create'])->name('multas-usuario.create');
+    Route::post('multas-usuario', [MultaUsuarioController::class, 'store'])->name('multas-usuario.store');
+
     Route::get('cobros', [PagoController::class, 'index'])->name('cobros.index');
     Route::post('cobros', [PagoController::class, 'store'])->name('cobros.store');
     Route::get('egresos', [EgresoController::class, 'index'])->name('egresos.index');

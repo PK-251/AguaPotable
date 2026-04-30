@@ -15,6 +15,9 @@
             <a href="{{ route('agua.cobros.index', ['padron' => $residente->id]) }}" class="btn btn-primary d-inline-flex align-items-center gap-2">
                 <x-ui.icon name="point_of_sale" size="sm" /> Ir a cobros
             </a>
+            <a href="{{ route('agua.multas-usuario.create', ['padron_usuario_id' => $residente->id]) }}" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2">
+                <x-ui.icon name="warning" size="sm" /> Aplicar multa
+            </a>
             <a href="{{ route('agua.padron.edit', $residente) }}" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2">
                 <x-ui.icon name="edit" size="sm" /> Editar
             </a>

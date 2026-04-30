@@ -4,7 +4,7 @@ namespace App\Http\Requests\Agua;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTarifaRequest extends FormRequest
+class UpdateTarifaRequest extends FormRequest
 {
     public function authorize(): bool
     {
