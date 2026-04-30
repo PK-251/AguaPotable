@@ -3,9 +3,8 @@
 namespace App\Http\Requests\Agua;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdatePadronRequest extends FormRequest
+class StorePadronRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,11 +16,8 @@ class UpdatePadronRequest extends FormRequest
      */
     public function rules(): array
     {
-        /** @var \App\Models\PadronUsuario $padron */
-        $padron = $this->route('padron');
-
         return [
-            'codigo' => ['required', 'string', 'max:50', Rule::unique('padron_usuarios', 'codigo')->ignore($padron->id)],
+            'codigo' => ['required', 'string', 'max:50', 'unique:padron_usuarios,codigo'],
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'direccion' => ['required', 'string', 'max:500'],

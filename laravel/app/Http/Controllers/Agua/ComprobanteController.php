@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Agua;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pago;
 use Illuminate\Http\Response;
 
 class ComprobanteController extends Controller
 {
-    public function show(int $pagoId): Response
+    public function show(Pago $pago): Response
     {
-        // Pendiente: autorización y emisión PDF/stream
-        return response('Pendiente: comprobante', 200)->header('Content-Type', 'text/plain');
+        // Pendiente: autorización por policy y emisión PDF/stream (DomPDF).
+        return response('Pendiente: comprobante PDF', 200)->header('Content-Type', 'text/plain; charset=UTF-8');
     }
 }

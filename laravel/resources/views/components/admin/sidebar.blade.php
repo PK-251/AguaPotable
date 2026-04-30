@@ -56,12 +56,14 @@
                     'label' => 'Auditoría',
                     'icon'  => 'fact_check',
                     'match' => 'admin.audit.*',
+                    'admin_only' => true,
                 ],
                 [
                     'route' => 'admin.users.index',
                     'label' => 'Usuarios',
                     'icon'  => 'manage_accounts',
                     'match' => 'admin.users.*',
+                    'admin_only' => true,
                 ],
             ],
         ],
@@ -82,6 +84,9 @@
     @foreach ($navGroups as $group)
         <ul class="agua-sidebar__nav">
             @foreach ($group['items'] as $item)
+                @if (! empty($item['admin_only'] ?? false) && ! auth()->user()->esAdmin())
+                    @continue
+                @endif
                 @php
                     $matchPatterns = is_array($item['match']) ? $item['match'] : [$item['match']];
                     $isActive = collect($matchPatterns)->some(fn ($p) => request()->routeIs($p));

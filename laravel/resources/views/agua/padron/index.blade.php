@@ -3,53 +3,54 @@
 @section('title', 'Padrón de usuarios')
 
 @section('content')
-    @php
-        /** Datos demo estáticos para la vista base. */
-        $rows = $rows ?? [
-            ['codigo' => 'U-1001', 'initials' => 'CQ', 'tone' => 'muted',   'nombre' => 'Carlos Quispe Mamani',   'direccion' => 'Sector Central Mz A Lt 4',     'tarifa' => 'Doméstica', 'estado' => ['Activo',   'success'], 'deuda' => '0.00',  'deudaTone' => null],
-            ['codigo' => 'U-1002', 'initials' => 'MR', 'tone' => 'muted',   'nombre' => 'María Rodriguez Soto',   'direccion' => 'Barrio Alto C. Principal 120',  'tarifa' => 'Comercial', 'estado' => ['Cortado',  'danger'],  'deuda' => '45.50', 'deudaTone' => 'danger'],
-            ['codigo' => 'U-1003', 'initials' => 'JL', 'tone' => 'warning', 'nombre' => 'Juan Lopez Flores',      'direccion' => 'Sector Sur Mz C Lt 12',         'tarifa' => 'Doméstica', 'estado' => ['Activo',   'success'], 'deuda' => '15.00', 'deudaTone' => null],
-            ['codigo' => 'U-1004', 'initials' => 'AT', 'tone' => 'muted',   'nombre' => 'Ana Torres Huaman',      'direccion' => 'Barrio Nuevo Psj. Sol 45',      'tarifa' => 'Social',    'estado' => ['Inactivo', 'muted'],   'deuda' => '0.00',  'deudaTone' => null],
-            ['codigo' => 'U-1005', 'initials' => 'PG', 'tone' => 'muted',   'nombre' => 'Pedro Gomez Ruiz',       'direccion' => 'Sector Central Mz B Lt 2',      'tarifa' => 'Doméstica', 'estado' => ['Activo',   'success'], 'deuda' => '0.00',  'deudaTone' => null],
-        ];
-    @endphp
+    @if (session('status'))
+        <x-ui.alert variant="success" icon="check_circle" class="mb-3">{{ session('status') }}</x-ui.alert>
+    @endif
 
     <x-ui.page-header
-        title="Padrón de Usuarios"
-        subtitle="Gestión y registro de residentes activos e inactivos.">
+        title="Padrón de usuarios"
+        subtitle="Gestión y registro de usuarios del servicio de agua potable.">
         <x-slot name="actions">
-            <a href="#" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2">
-                <x-ui.icon name="download" size="sm" /> Exportar
+            <a href="{{ route('agua.import-export.padron') }}" class="btn btn-outline-secondary d-inline-flex align-items-center gap-2">
+                <x-ui.icon name="download" size="sm" /> Importar / exportar
             </a>
-            <a href="#" class="btn btn-primary d-inline-flex align-items-center gap-2">
-                <x-ui.icon name="add" size="sm" /> Nuevo Residente
+            <a href="{{ route('agua.padron.create') }}" class="btn btn-primary d-inline-flex align-items-center gap-2" data-cy="padron-nuevo">
+                <x-ui.icon name="add" size="sm" /> Nuevo usuario
             </a>
         </x-slot>
     </x-ui.page-header>
 
-    <x-ui.filter-bar>
-        <x-ui.search-input label="Buscar" placeholder="Código o nombre..." name="q" :value="request('q')" />
+    <form method="get" action="{{ route('agua.padron.index') }}" class="mb-3">
+        <x-ui.filter-bar>
+            <x-ui.search-input label="Buscar" placeholder="Código, nombre o dirección" name="q" :value="$filtros['q'] ?? ''" />
 
-        <div>
-            <label class="form-label">Estado</label>
-            <select class="form-select" name="estado">
-                <option>Todos</option>
-                <option>Activo</option>
-                <option>Cortado</option>
-                <option>Inactivo</option>
-            </select>
-        </div>
+            <div>
+                <label class="form-label">Estado</label>
+                <select class="form-select" name="estado">
+                    <option value="todos" @selected(($filtros['estado'] ?? 'todos') === 'todos')>Todos</option>
+                    <option value="activo" @selected(($filtros['estado'] ?? '') === 'activo')>Activo</option>
+                    <option value="cortado" @selected(($filtros['estado'] ?? '') === 'cortado')>Cortado</option>
+                </select>
+            </div>
 
-        <div>
-            <label class="form-label">Tarifa</label>
-            <select class="form-select" name="tarifa">
-                <option>Todas</option>
-                <option>Doméstica</option>
-                <option>Comercial</option>
-                <option>Social</option>
-            </select>
-        </div>
-    </x-ui.filter-bar>
+            <div>
+                <label class="form-label">Tarifa</label>
+                <select class="form-select" name="tarifa_id">
+                    <option value="">Todas</option>
+                    @foreach ($tarifas as $tarifa)
+                        <option value="{{ $tarifa->id }}" @selected((string) ($filtros['tarifa_id'] ?? '') === (string) $tarifa->id)>
+                            {{ $tarifa->nombre }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="d-flex align-items-end gap-2">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+                <a href="{{ route('agua.padron.index') }}" class="btn btn-outline-secondary">Limpiar</a>
+            </div>
+        </x-ui.filter-bar>
+    </form>
 
     <x-ui.data-table>
         <thead>
@@ -59,54 +60,67 @@
                 <th>Dirección</th>
                 <th>Tarifa</th>
                 <th>Estado</th>
-                <th class="text-end">Deuda actual</th>
-                <th class="text-end" style="width:90px;">Acciones</th>
+                <th class="text-end">Deuda pendiente</th>
+                <th class="text-end" style="width:120px;">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($rows as $r)
+            @forelse ($residentes as $r)
+                @php
+                    $nombreCompleto = trim($r->nombre.' '.$r->apellido);
+                    $iniciales = mb_strtoupper(mb_substr(trim($r->nombre), 0, 1).mb_substr(trim($r->apellido), 0, 1));
+                    $deuda = $r->deuda_pendiente_sum ?? 0;
+                @endphp
                 <tr>
-                    <td class="text-body-secondary">{{ $r['codigo'] }}</td>
+                    <td class="text-body-secondary">{{ $r->codigo }}</td>
                     <td>
                         <div class="d-inline-flex align-items-center gap-2">
-                            <x-ui.avatar :initials="$r['initials']" :tone="$r['tone']" />
-                            <span>{{ $r['nombre'] }}</span>
+                            <x-ui.avatar :initials="$iniciales" tone="muted" />
+                            <span>{{ $nombreCompleto }}</span>
                         </div>
                     </td>
-                    <td class="text-body-secondary">{{ $r['direccion'] }}</td>
-                    <td>{{ $r['tarifa'] }}</td>
-                    <td><x-ui.status-badge :label="$r['estado'][0]" :tone="$r['estado'][1]" /></td>
+                    <td class="text-body-secondary">{{ $r->direccion }}</td>
+                    <td>{{ $r->tarifa?->nombre ?? '—' }}</td>
+                    <td>
+                        <x-ui.status-badge
+                            :label="$r->estado === 'activo' ? 'Activo' : 'Cortado'"
+                            :tone="$r->estado === 'activo' ? 'success' : 'danger'" />
+                    </td>
                     <td class="text-end">
-                        <x-ui.money :amount="$r['deuda']" :tone="$r['deudaTone']" />
+                        <x-ui.money :amount="$deuda" :tone="(float) $deuda > 0 ? 'warning' : null" />
                     </td>
                     <td class="text-end">
                         <div class="agua-actions">
-                            <a href="#" class="agua-icon-btn" aria-label="Editar">
+                            <a href="{{ route('agua.padron.show', $r) }}" class="agua-icon-btn" aria-label="Ver">
+                                <x-ui.icon name="visibility" size="sm" />
+                            </a>
+                            <a href="{{ route('agua.padron.edit', $r) }}" class="agua-icon-btn" aria-label="Editar">
                                 <x-ui.icon name="edit" size="sm" />
                             </a>
-                            <button type="button" class="agua-icon-btn agua-icon-btn--danger" aria-label="Eliminar">
-                                <x-ui.icon name="delete" size="sm" />
-                            </button>
+                            <a href="{{ route('agua.cobros.index', ['padron' => $r->id]) }}" class="agua-icon-btn" aria-label="Cobrar">
+                                <x-ui.icon name="point_of_sale" size="sm" />
+                            </a>
                         </div>
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="7"><x-ui.empty-state icon="group_off" title="Sin residentes" message="Registre el primer residente para comenzar." /></td></tr>
+                <tr>
+                    <td colspan="7">
+                        <x-ui.empty-state icon="group_off" title="Sin residentes" message="No hay coincidencias o el padrón aún está vacío. Cree el primer registro para comenzar." />
+                    </td>
+                </tr>
             @endforelse
         </tbody>
 
         <x-slot name="footer">
-            <div class="text-body-secondary small">Mostrando 1–5 de 854 residentes</div>
-            <nav aria-label="Paginación">
-                <ul class="pagination pagination-sm mb-0">
-                    <li class="page-item disabled"><span class="page-link">&lsaquo;</span></li>
-                    <li class="page-item active"><span class="page-link">1</span></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item disabled"><span class="page-link">…</span></li>
-                    <li class="page-item"><a class="page-link" href="#">&rsaquo;</a></li>
-                </ul>
-            </nav>
+            <div class="text-body-secondary small">
+                @if ($residentes->total() > 0)
+                    Mostrando {{ $residentes->firstItem() }}–{{ $residentes->lastItem() }} de {{ $residentes->total() }} residentes
+                @else
+                    Sin registros para mostrar
+                @endif
+            </div>
+            {{ $residentes->links() }}
         </x-slot>
     </x-ui.data-table>
 @endsection

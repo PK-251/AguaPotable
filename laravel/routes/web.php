@@ -27,16 +27,20 @@ Route::post('logout', [LoginController::class, 'destroy'])
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
-    Route::get('auditoria', [AuditLogController::class, 'index'])->name('audit.index');
-    Route::get('usuarios', [UserManagementController::class, 'index'])->name('users.index');
+
+    Route::middleware('admin')->group(function () {
+        Route::get('auditoria', [AuditLogController::class, 'index'])->name('audit.index');
+        Route::get('usuarios', [UserManagementController::class, 'index'])->name('users.index');
+    });
 });
 
 Route::prefix('agua')->middleware('auth')->name('agua.')->group(function () {
-    Route::get('padron', [PadronController::class, 'index'])->name('padron.index');
+    Route::resource('padron', PadronController::class)->except(['destroy']);
     Route::get('tarifas', [TarifaController::class, 'index'])->name('tarifas.index');
     Route::get('multas', [MultaController::class, 'index'])->name('multas.index');
     Route::get('multas-usuario', [MultaUsuarioController::class, 'index'])->name('multas-usuario.index');
     Route::get('cobros', [PagoController::class, 'index'])->name('cobros.index');
+    Route::post('cobros', [PagoController::class, 'store'])->name('cobros.store');
     Route::get('egresos', [EgresoController::class, 'index'])->name('egresos.index');
     Route::get('reportes-mensuales', [ReporteMensualController::class, 'index'])->name('reportes-mensuales.index');
     Route::get('import-export/padron', [ImportExportController::class, 'padron'])->name('import-export.padron');
